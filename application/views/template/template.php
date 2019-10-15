@@ -1,3 +1,9 @@
+<?php
+if($this->session->userdata('role_id') == '17'){
+  redirect(base_url('admin'));
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,37 +64,36 @@ $this->session->set_userdata(array('url_session' => $actual_link));
           </div>
           <div class="collapse navbar-collapse pull-left menu-custom_css" id="navbar-collapse">
             <ul class="nav navbar-nav">
-              <li><a href="<?= base_url('project') ?>"><i class="fa fa-archive"></i> Barang</a></li>
+              <li><a href="<?= base_url('item') ?>"><i class="fa fa-archive"></i> Barang</a></li>
             </ul>
           </div>
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+              <li class="dropdown tasks-menu">
+                <a href="#" class="dropdown-toggle">
+                  <i class="fa fa-shopping-cart"></i>
+                  <span class="label label-danger">9</span>
+                </a>
+              </li>
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <b><img src="https://images.pexels.com/photos/1404819/pexels-photo-1404819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" width="25px" height="25px" style="border-radius: 50px">
-                    <?= strlen('Bagus') > 10 ? substr('Bagus', 0, 10) . "..." : 'Bagus' ?>
-                  </b>
+                  <img src="https://images.pexels.com/photos/1404819/pexels-photo-1404819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" class="img-circle" alt="User Image" width="25px" height="25px">
+                  <span class="hidden-xs">Alexander Pierce</span>
                 </a>
                 <ul class="dropdown-menu">
                   <li class="user-header">
                     <img src="https://images.pexels.com/photos/1404819/pexels-photo-1404819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" class="img-circle" alt="User Image">
                     <p>
-                      Bagus <br><b>Role</b>
-                      <small>Bagus@gmail.com</small>
+                      Alexander Pierce - Web Developer
+                      <small>Member since Nov. 2012</small>
                     </p>
                   </li>
-                  <li class="user-body">
-                    <div class="row">
-                      <div class="col-md-6 col-xs-12" style="margin-top: 5px; margin-bottom: 5px">
-                        <a href="<?= base_url('dashboard') ?>">
-                          <button type="button" class="btn btn-block btn-primary"><i class="fa fa-dashboard"></i> Dashboard</button>
-                        </a>
-                      </div>
-                      <div class="col-md-6 col-xs-12" style="margin-top: 5px; margin-bottom: 5px">
-                        <a href="<?= base_url('login/logout') ?>">
-                          <button type="button" class="btn btn-block btn-danger"><i class="fa fa-sign-out"></i> Logout</button>
-                        </a>
-                      </div>
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    </div>
+                    <div class="pull-right">
+                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>
