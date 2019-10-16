@@ -48,49 +48,25 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-3 col-sm-4 col-xs-6">
-          <div class="box box-solid round">
-            <div class="box-header" align="center">
-              <h4><b>Tites Goes Here</b></h4>
-            </div>
-            <img src="https://images.pexels.com/photos/416320/pexels-photo-416320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Second slide" style="height: 180px; width: 100%; object-fit: cover; display: inline;">
-            <div class="box-body" align="center">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-4 col-xs-6">
-          <div class="box box-solid round">
-            <div class="box-header" align="center">
-              <h4><b>Tites Goes Here</b></h4>
-            </div>
-            <img src="https://images.pexels.com/photos/416320/pexels-photo-416320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Second slide" style="height: 180px; width: 100%; object-fit: cover; display: inline;">
-            <div class="box-body" align="center">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+        <?php foreach ($kategori as $row) { 
+          $photo = $this->mymodel->selectDataone('file', array('table_id' => $row['idKategori'], 'table' => 'm_kategori')); ?>
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="box box-solid round">
+              <div class="box-header" align="center">
+                <h4><b></b><?= $row['namaKategori'] ?></b></h4>
+              </div>
+              <img src="<?= $photo['url'] ?>" alt="Second slide" style="height: 180px; width: 100%; object-fit: cover; display: inline;">
+              <div class="box-body" align="center">
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-3 col-sm-4 col-xs-6">
-          <div class="box box-solid round">
-            <div class="box-header" align="center">
-              <h4><b>Tites Goes Here</b></h4>
-            </div>
-            <img src="https://images.pexels.com/photos/416320/pexels-photo-416320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Second slide" style="height: 180px; width: 100%; object-fit: cover; display: inline;">
-            <div class="box-body" align="center">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-4 col-xs-6">
-          <div class="box box-solid round">
-            <div class="box-header" align="center">
-              <h4><b>Tites Goes Here</b></h4>
-            </div>
-            <img src="https://images.pexels.com/photos/416320/pexels-photo-416320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Second slide" style="height: 180px; width: 100%; object-fit: cover; display: inline;">
-            <div class="box-body" align="center">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            </div>
-          </div>
+        <?php  } ?> 
+        <div class="col-md-12" align="center">
+          <a href="<?= base_url('kategori') ?>">
+            <button class="btn btn-primary round">
+              <i class="fa fa-search"></i> Buka Selengkapnya !
+            </button>
+          </a>
         </div>
       </div>
       <div class="row">
@@ -125,51 +101,58 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-3 col-sm-4 col-xs-6">
-          <div class="box box-solid round">
-            <div class="box-header" align="center">
-              <h4><b>Tites Goes Here</b></h4>
-            </div>
-            <img src="https://images.pexels.com/photos/416320/pexels-photo-416320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Second slide" style="height: 180px; width: 100%; object-fit: cover; display: inline;">
-            <div class="box-body" align="center">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-4 col-xs-6">
-          <div class="box box-solid round">
-            <div class="box-header" align="center">
-              <h4><b>Tites Goes Here</b></h4>
-            </div>
-            <img src="https://images.pexels.com/photos/416320/pexels-photo-416320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Second slide" style="height: 180px; width: 100%; object-fit: cover; display: inline;">
-            <div class="box-body" align="center">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-4 col-xs-6">
-          <div class="box box-solid round">
-            <div class="box-header" align="center">
-              <h4><b>Tites Goes Here</b></h4>
-            </div>
-            <img src="https://images.pexels.com/photos/416320/pexels-photo-416320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Second slide" style="height: 180px; width: 100%; object-fit: cover; display: inline;">
-            <div class="box-body" align="center">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+        <?php foreach ($produk as $row) { 
+          $photo = $this->mymodel->selectDataone('file', array('table_id' => $row['idProduk'], 'table' => 'm_produk')); 
+          $kategori = $this->mymodel->selectDataone('m_kategori', array('idKategori' => $row['idKategori']));?>
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="box box-solid round"  onclick="view(<?= $row['idProduk'] ?>)">
+              <div class="box-header" align="center">
+                <img src="<?= $photo['url'] ?>" alt="Second slide" style="height: 180px; width: 100%; object-fit: cover; display: inline;">
+              </div>
+              <div class="box-body" align="center">
+                <h4>
+                  <b>
+                    <?= strlen($row["namaProduk"]) > 25 ? substr($row["namaProduk"],0,25)."..." : $row["namaProduk"] ?>  
+                  </b><br>
+                  <small><?= $kategori['namaKategori'] ?></small>
+                </h4>
+                Sisa Stock : <b>15</b>
+                <br>
+                Harga : <b> <?= $row['hargajProduk'] ?></b>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-3 col-sm-4 col-xs-6">
-          <div class="box box-solid round">
-            <div class="box-header" align="center">
-              <h4><b>Tites Goes Here</b></h4>
-            </div>
-            <img src="https://images.pexels.com/photos/416320/pexels-photo-416320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Second slide" style="height: 180px; width: 100%; object-fit: cover; display: inline;">
-            <div class="box-body" align="center">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            </div>
-          </div>
+        <?php  } ?> 
+        <div class="col-md-12" align="center">
+          <a href="<?= base_url('item') ?>">
+            <button class="btn btn-primary round">
+              <i class="fa fa-search"></i> Buka Selengkapnya !
+            </button>
+          </a>
         </div>
       </div>
     </section>
   </div>
 </div>
+<div class="modal modal-default fade" id="modal-view" style="display: none;">
+  <div class="modal-dialog round">
+    <div class="modal-content round">
+      <div class="modal-header top-round bg-green">
+        <h4 class="modal-title" align="center" id="title-view"></h4>
+      </div>
+      <div class="modal-body">
+        <div id="load-view"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+
+  function view(id) {
+    $("#load-view").html('loading...');
+    $("#modal-view").modal();
+    $("#title-view").html('Produk');
+    $("#load-view").load("<?= base_url('produk/view/') ?>" + id);
+  }
+
+</script>

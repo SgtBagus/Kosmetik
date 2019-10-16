@@ -66,7 +66,7 @@ $this->session->set_userdata(array('url_session' => $actual_link));
           <div class="collapse navbar-collapse pull-left menu-custom_css" id="navbar-collapse">
             <ul class="nav navbar-nav">
               <li><a href="<?= base_url('kategori') ?>"><i class="fa fa-th"></i> Kategori</a></li>
-              <li><a href="<?= base_url('item') ?>"><i class="fa fa-list"></i> Barang</a></li>
+              <li><a href="<?= base_url('produk') ?>"><i class="fa fa-list"></i> Produk</a></li>
               <li><a href="#"><i class="fa fa-info"></i> Informasi</a></li>
               <li>
                 <form action="<?= base_url('item') ?>" class="navbar-form navbar-left" role="search" method="GET">

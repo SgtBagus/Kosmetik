@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 16, 2019 at 05:27 AM
+-- Generation Time: Oct 16, 2019 at 08:11 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.6
 
@@ -732,6 +732,7 @@ CREATE TABLE `m_produk` (
   `idProduk` int(11) NOT NULL,
   `idCreator` int(11) NOT NULL,
   `namaProduk` varchar(255) NOT NULL,
+  `deskProduk` text DEFAULT NULL,
   `hargabProduk` double NOT NULL,
   `hargajProduk` double NOT NULL,
   `idKategori` int(11) NOT NULL,
@@ -744,10 +745,10 @@ CREATE TABLE `m_produk` (
 -- Dumping data for table `m_produk`
 --
 
-INSERT INTO `m_produk` (`idProduk`, `idCreator`, `namaProduk`, `hargabProduk`, `hargajProduk`, `idKategori`, `status`, `created_at`, `updated_at`) VALUES
-(4, 23, 'Pixy Make It Glow Dewy Cushion', 100000, 117000, 15, 'ENABLE', '2019-10-15 15:25:34', '2019-10-15 15:25:48'),
-(5, 23, 'Make Over Powerstay Matte Powder Foundation', 150000, 167000, 15, 'ENABLE', '2019-10-15 15:26:27', '0000-00-00 00:00:00'),
-(6, 23, 'Wardah Everyday BB Cream', 25000, 45000, 15, 'ENABLE', '2019-10-15 15:26:55', '0000-00-00 00:00:00');
+INSERT INTO `m_produk` (`idProduk`, `idCreator`, `namaProduk`, `deskProduk`, `hargabProduk`, `hargajProduk`, `idKategori`, `status`, `created_at`, `updated_at`) VALUES
+(4, 23, 'Pixy Make It Glow Dewy Cushion', 'BB cream atau liquid foundation yang disimpan dalam sponge khusus. Daya tutup yang tinggi sehingga dapat menutup kekurangan di wajah seperti noda hitam dan bekas jerawat dengan sangat baik. Mengandung Botanical Extract seperti Olive Oil, Jojoba Oil dan Yuzu extract yang membantu menutrisi kulit dari dalam, sehingga membuat wajah nampak sehat bercahaya. Mengandung SPF 23 & PA++.', 100000, 117000, 15, 'ENABLE', '2019-10-15 15:25:34', '2019-10-16 10:56:15'),
+(5, 23, 'Make Over Powerstay Matte Powder Foundation', 'Bedak padat yang mengandung foundation dan SPF!\r\n\r\nMake Over Powerstay Matte Powder Foundation merupakan bedak padat yang mengandung foundation, tahan lama hingga 10 jam dengan hasil matte yang sempurna namun tidak terlihat flat dan tebal. Dilengkapi dengan Microfine Color-Rich Pigment Technology dan Fade Resistant Formula sehingga menghasilkan warna yang merata dan menyatu dengan kulit wajah, menutup kekurangan pada wajah dengan sempurna namun tetap terasa ringan.', 150000, 167000, 15, 'ENABLE', '2019-10-15 15:26:27', '2019-10-16 11:07:18'),
+(6, 23, 'Wardah Everyday BB Cream', 'Wardah Everyday BB Cream memiliki kemasan tube berwarna hijau tosca yang praktis dan ringan untuk dibawa-bawa. BB cream Wardah ini dibungkus dalam box dengan tekstur doff, pada box-nya terdapat penjelasan mengenai produk, klaim, cara pengguaan, ingredients serta label Halal dan nomor BPOM', 25000, 45000, 15, 'ENABLE', '2019-10-15 15:26:55', '2019-10-16 11:08:13');
 
 -- --------------------------------------------------------
 
