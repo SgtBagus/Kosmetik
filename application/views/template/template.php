@@ -1,11 +1,12 @@
 <?php
-if($this->session->userdata('role_id') == '17'){
+if ($this->session->userdata('role_id') == '17') {
   redirect(base_url('admin'));
 }
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -67,11 +68,10 @@ $this->session->set_userdata(array('url_session' => $actual_link));
             <ul class="nav navbar-nav">
               <li><a href="<?= base_url('kategori') ?>"><i class="fa fa-th"></i> Kategori</a></li>
               <li><a href="<?= base_url('produk') ?>"><i class="fa fa-list"></i> Produk</a></li>
-              <li><a href="#"><i class="fa fa-info"></i> Informasi</a></li>
               <li>
-                <form action="<?= base_url('item') ?>" class="navbar-form navbar-left" role="search" method="GET">
+                <form action="<?= base_url('produk') ?>" class="navbar-form navbar-left" role="search" method="GET">
                   <div class="form-group">
-                    <input type="text" class="form-control" id="navbar-search-input" placeholder="Search" name="item">
+                    <input type="text" class="form-control" id="navbar-search-input" placeholder="Search" name="name">
                   </div>
                 </form>
               </li>
@@ -90,13 +90,13 @@ $this->session->set_userdata(array('url_session' => $actual_link));
                     Daftar
                   </a>
                 </li>
-              <?php } else { 
+              <?php } else {
                 $userdata = $this->mymodel->selectDataone('tbl_user', array('id' => $this->session->userdata('id')));
                 $photo = $this->mymodel->selectDataone('file', array('table' => 'tbl_user', 'table_id' => $this->session->userdata('id')));
 
                 ?>
                 <li>
-                  <a href="#">
+                  <a href="<?= base_url('cart') ?>">
                     <i class="fa fa-shopping-cart"></i>
                     <span class="label label-danger">9</span>
                   </a>
@@ -221,87 +221,24 @@ $this->session->set_userdata(array('url_session' => $actual_link));
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
   }
 
-  $(document).ready(function() {
-    size_li = $("#myList li").size();
-    x = 3;
-    $('#myList li:lt(' + x + ')').show();
-    $('#loadMore').click(function() {
-      x = (x + 3 <= size_li) ? x + 3 : size_li;
-      $('#myList li:lt(' + x + ')').show();
-      $('#showLess').show();
-      if (x == size_li) {
-        $('#loadMore').hide();
-      }
-    });
-    $('#showLess').click(function() {
-      x = (x - 3 < 0) ? 3 : x - 3;
-      $('#myList li').not(':lt(' + x + ')').hide();
-      $('#loadMore').show();
-      $('#showLess').show();
-      if (x == 3) {
-        $('#showLess').hide();
-      }
-    });
-  });
+
+  function lazzy_loader(limit) {
+    var output = '<div class="row">' +
+      '<div class="col-xs-12" align="center">' +
+      '<h4><i class="fa fa-fw fa-spinner fa-spin"></i> Memuat Data !</h4' +
+      '</div>' +
+      '</div>';
+    $('#load_data_message').html(output);
+  }
 
   $(function() {
     $('.select2').select2()
     $('#datemask').inputmask('dd/mm/yyyy', {
       'placeholder': 'dd/mm/yyyy'
     })
-    $('#datemask2').inputmask('mm/dd/yyyy', {
-      'placeholder': 'mm/dd/yyyy'
-    })
-
-    $('[data-mask]').inputmask();
-
-    $('#reservation').daterangepicker()
-    $('#reservationtime').daterangepicker({
-      timePicker: true,
-      timePickerIncrement: 30,
-      format: 'MM/DD/YYYY h:mm A'
-    })
-    $('#daterange-btn').daterangepicker({
-      ranges: {
-        'Today': [moment(), moment()],
-        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-        'This Month': [moment().startOf('month'), moment().endOf('month')],
-        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-      },
-      startDate: moment().subtract(29, 'days'),
-      endDate: moment()
-    },
-    function(start, end) {
-      $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-    }
-    );
 
     $('#datepicker').datepicker({
       format: 'dd-mm-yyyy',
-    });
-
-    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-      checkboxClass: 'icheckbox_minimal-blue',
-      radioClass: 'iradio_minimal-blue'
-    });
-
-    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-      checkboxClass: 'icheckbox_minimal-red',
-      radioClass: 'iradio_minimal-red'
-    });
-
-    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-      checkboxClass: 'icheckbox_flat-green',
-      radioClass: 'iradio_flat-green'
-    });
-
-    $('.my-colorpicker1').colorpicker();
-    $('.my-colorpicker2').colorpicker();
-
-    $('.timepicker').timepicker({
-      showInputs: false
     });
 
     $('#datatable').DataTable({
@@ -365,82 +302,6 @@ $this->session->set_userdata(array('url_session' => $actual_link));
       reader.readAsDataURL(input.files[0]);
     }
   };
-
-  $("#btnFile-KTP").click(function() {
-    document.getElementById('imageKTP').click();
-  });
-
-  $("#imageKTP").change(function() {
-    imageKTP(this);
-  });
-
-  function imageKTP(input) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-
-      reader.onload = function(e) {
-        $('#preview_ktp').attr('src', e.target.result);
-      }
-
-      reader.readAsDataURL(input.files[0]);
-    }
-  };
-
-  $("#btnFile-NPWP").click(function() {
-    document.getElementById('imageNPWP').click();
-  });
-
-  $("#imageNPWP").change(function() {
-    imageNPWP(this);
-  });
-
-  function imageNPWP(input) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-
-      reader.onload = function(e) {
-        $('#preview_npwp').attr('src', e.target.result);
-      }
-
-      reader.readAsDataURL(input.files[0]);
-    }
-  };
-
-  $('#refresh').click(function() {
-    location.reload();
-  });
-
-  function get_kota() {
-    var idProvinsi = $("#provinsi").val();
-    if (idProvinsi) {
-      $.ajax({
-        url: "<?= base_url() ?>ajaxurl/get_kota/" + idProvinsi,
-        type: "GET",
-        dataType: "json",
-        success: function(data) {
-          $("#kota").empty();
-          if (!$.trim(data)) {
-            $("#kota").append('<option value="">Data Tidak Ada</option>');
-          } else {
-            $.each(data, function(key, value) {
-              $("#kota").append('<option id="kota-' + value.id + '" value="' +
-                value.id + '">' + value.value +
-                '</option>');
-            });
-          }
-        }
-      });
-    } else {
-      $("#kota").empty();
-      $("#kota").append('<option value="">Pilih Provinsi Terlebih Dahulu</option>');
-    }
-  }
-
-  $("#provinsi").change(function() {
-    get_kota();
-  });
-
-  // get_kota();
 </script>
 
 </html>

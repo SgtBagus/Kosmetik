@@ -48,19 +48,24 @@
         </div>
       </div>
       <div class="row">
-        <?php foreach ($kategori as $row) { 
+        <?php foreach ($kategori as $row) {
           $photo = $this->mymodel->selectDataone('file', array('table_id' => $row['idKategori'], 'table' => 'm_kategori')); ?>
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="box box-solid round">
               <div class="box-header" align="center">
-                <h4><b></b><?= $row['namaKategori'] ?></b></h4>
+                <img src="<?= $photo['url'] ?>" alt="Second slide" style="height: 180px; width: 100%; object-fit: cover; display: inline;">
               </div>
-              <img src="<?= $photo['url'] ?>" alt="Second slide" style="height: 180px; width: 100%; object-fit: cover; display: inline;">
               <div class="box-body" align="center">
+                <h4 style="margin-top:0px"><b><?= $row['namaKategori'] ?></b></h4>
+                <a href="<?= base_url('produk?kategori=' . $row['idKategori']) ?>">
+                  <button class="btn btn-primary round btn-sm">
+                    <i class="fa fa-search"></i> Cari Produk !
+                  </button>
+                </a>
               </div>
             </div>
           </div>
-        <?php  } ?> 
+        <?php  } ?>
         <div class="col-md-12" align="center">
           <a href="<?= base_url('kategori') ?>">
             <button class="btn btn-primary round">
@@ -71,13 +76,13 @@
       </div>
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
-          <h3>List Barang</h3>
+          <h3>List Produk</h3>
           <div class="box box-solid round">
             <div class="box-body">
-              <form action="<?= base_url('barang') ?>" method="post">
+              <form action="<?= base_url('produk') ?>" method="GET">
                 <div class="row">
                   <div class="col-md-12 col-sm-12 col-xs-12">
-                    <h4>Cari Barang : </h4>
+                    <h4>Cari Produk : </h4>
                   </div>
                   <div class="col-md-9 col-sm-9 col-xs-9">
                     <div class="form-group">
@@ -85,7 +90,7 @@
                         <div class="input-group-addon">
                           <i class="fa fa-archive"></i>
                         </div>
-                        <input type="text" class="form-control" name="judul" placeholder="Masukan Judul..">
+                        <input type="text" class="form-control" name="name" placeholder="Masukan Nama Produk">
                       </div>
                     </div>
                   </div>
@@ -101,30 +106,30 @@
         </div>
       </div>
       <div class="row">
-        <?php foreach ($produk as $row) { 
-          $photo = $this->mymodel->selectDataone('file', array('table_id' => $row['idProduk'], 'table' => 'm_produk')); 
-          $kategori = $this->mymodel->selectDataone('m_kategori', array('idKategori' => $row['idKategori']));?>
+        <?php foreach ($produk as $row) {
+          $photo = $this->mymodel->selectDataone('file', array('table_id' => $row['idProduk'], 'table' => 'm_produk'));
+          $kategori = $this->mymodel->selectDataone('m_kategori', array('idKategori' => $row['idKategori'])); ?>
           <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="box box-solid round"  onclick="view(<?= $row['idProduk'] ?>)">
+            <div class="box box-solid round" onclick="view(<?= $row['idProduk'] ?>)">
               <div class="box-header" align="center">
                 <img src="<?= $photo['url'] ?>" alt="Second slide" style="height: 180px; width: 100%; object-fit: cover; display: inline;">
               </div>
               <div class="box-body" align="center">
-                <h4>
+                <h4 style="margin-top:0px">
                   <b>
-                    <?= strlen($row["namaProduk"]) > 25 ? substr($row["namaProduk"],0,25)."..." : $row["namaProduk"] ?>  
+                    <?= strlen($row["namaProduk"]) > 25 ? substr($row["namaProduk"], 0, 25) . "..." : $row["namaProduk"] ?>
                   </b><br>
                   <small><?= $kategori['namaKategori'] ?></small>
                 </h4>
                 Sisa Stock : <b>15</b>
                 <br>
-                Harga : <b> <?= $row['hargajProduk'] ?></b>
+                Harga : <b> Rp. <?= number_format($row['hargajProduk'], 0, ',', '.') ?>,- </b>
               </div>
             </div>
           </div>
-        <?php  } ?> 
+        <?php  } ?>
         <div class="col-md-12" align="center">
-          <a href="<?= base_url('item') ?>">
+          <a href="<?= base_url('produk') ?>">
             <button class="btn btn-primary round">
               <i class="fa fa-search"></i> Buka Selengkapnya !
             </button>
@@ -147,12 +152,10 @@
   </div>
 </div>
 <script type="text/javascript">
-
   function view(id) {
     $("#load-view").html('loading...');
     $("#modal-view").modal();
     $("#title-view").html('Produk');
     $("#load-view").load("<?= base_url('produk/view/') ?>" + id);
   }
-
 </script>
