@@ -33,7 +33,7 @@ defined('APPPATH') OR define('APPPATH', vfsStream::url('application/'));
 defined('VIEWPATH') OR define('VIEWPATH', APPPATH.'views/');
 defined('ENVIRONMENT') OR define('ENVIRONMENT', 'development');
 
-// Set localhost "remote" IP
+// Set localhost "remote" IP 
 isset($_SERVER['REMOTE_ADDR']) OR $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 
 // Prep our test environment

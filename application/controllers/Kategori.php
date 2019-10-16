@@ -10,4 +10,4 @@ class Kategori extends MY_Controller {
         $this->template->load('template/template','kategori/index', $data); 
     }
     
-}
+}  
