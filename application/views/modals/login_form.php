@@ -1,4 +1,4 @@
-<h3 align="center"> Masuk Sebagai Investor</h3>
+<h3 align="center"> Masuk Kosmetik</h3>
 <form action="<?= base_url('login/act_login') ?>" method="POST" id="login_form">
   <div class="show_error" id="error_input">
 

@@ -9,7 +9,7 @@ if($this->session->userdata('role_id') == '17'){
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AGNOV</title>
+  <title>KOSMETIK</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="<?= base_url('assets/') ?>bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?= base_url('assets/') ?>bower_components/font-awesome/css/font-awesome.min.css">
@@ -55,8 +55,9 @@ $this->session->set_userdata(array('url_session' => $actual_link));
         <div class="container">
           <div class="navbar-header">
             <a href="<?= base_url() ?>" class="navbar-brand">
-              <b><img src="<?= base_url('assets/') ?>icon.png" width="20px" height="25px">
-                AGNOV</b>
+              <b>
+                KOSMETIK
+              </b>
             </a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
               <i class="fa fa-bars"></i>
@@ -64,40 +65,66 @@ $this->session->set_userdata(array('url_session' => $actual_link));
           </div>
           <div class="collapse navbar-collapse pull-left menu-custom_css" id="navbar-collapse">
             <ul class="nav navbar-nav">
-              <li><a href="<?= base_url('item') ?>"><i class="fa fa-archive"></i> Barang</a></li>
+              <li><a href="<?= base_url('kategori') ?>"><i class="fa fa-th"></i> Kategori</a></li>
+              <li><a href="<?= base_url('item') ?>"><i class="fa fa-list"></i> Barang</a></li>
+              <li><a href="#"><i class="fa fa-info"></i> Informasi</a></li>
+              <li>
+                <form action="<?= base_url('item') ?>" class="navbar-form navbar-left" role="search" method="GET">
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="navbar-search-input" placeholder="Search" name="item">
+                  </div>
+                </form>
+              </li>
             </ul>
           </div>
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-              <li class="dropdown tasks-menu">
-                <a href="#" class="dropdown-toggle">
-                  <i class="fa fa-shopping-cart"></i>
-                  <span class="label label-danger">9</span>
-                </a>
-              </li>
-              <li class="dropdown user user-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="https://images.pexels.com/photos/1404819/pexels-photo-1404819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" class="img-circle" alt="User Image" width="25px" height="25px">
-                  <span class="hidden-xs">Alexander Pierce</span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li class="user-header">
-                    <img src="https://images.pexels.com/photos/1404819/pexels-photo-1404819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" class="img-circle" alt="User Image">
-                    <p>
-                      Alexander Pierce - Web Developer
-                      <small>Member since Nov. 2012</small>
-                    </p>
-                  </li>
-                  <li class="user-footer">
-                    <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Profile</a>
-                    </div>
-                    <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                    </div>
-                  </li>
-                </ul>
-              </li>
+              <?php if ($this->session->userdata('session_sop') == "") { ?>
+                <li>
+                  <a href="#" data-toggle="modal" data-target="#modal-login">
+                    Login
+                  </a>
+                </li>
+                <li>
+                  <a href="<?= base_url('register') ?>">
+                    Daftar
+                  </a>
+                </li>
+              <?php } else { 
+                $userdata = $this->mymodel->selectDataone('tbl_user', array('id' => $this->session->userdata('id')));
+                $photo = $this->mymodel->selectDataone('file', array('table' => 'tbl_user', 'table_id' => $this->session->userdata('id')));
+
+                ?>
+                <li>
+                  <a href="#">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span class="label label-danger">9</span>
+                  </a>
+                </li>
+                <li class="dropdown user user-menu">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="<?= $photo['url'] ?>" class="img-circle" alt="User Image" width="25px" height="25px">
+                    <span class="hidden-xs"><?= $userdata['name'] ?></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li class="user-header">
+                      <img src="<?= $photo['url'] ?>" class="img-circle" alt="User Image">
+                      <p>
+                        <?= $userdata['name'] ?>
+                        <small><?= $userdata['email'] ?></small>
+                      </p>
+                    </li>
+                    <li class="user-footer">
+                      <div class="pull-left">
+                        <a href="<?= base_url('profil') ?>" class="btn btn-default btn-flat"> Profile Akun</a>
+                      </div>
+                      <div class="pull-right">
+                        <a href="<?= base_url('login/logout') ?>" class="btn btn-default btn-flat"> Keluar</a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              <?php } ?>
               <li>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" id="refresh">
                   <i class="fa fa-refresh"></i>
@@ -235,20 +262,20 @@ $this->session->set_userdata(array('url_session' => $actual_link));
       format: 'MM/DD/YYYY h:mm A'
     })
     $('#daterange-btn').daterangepicker({
-        ranges: {
-          'Today': [moment(), moment()],
-          'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month': [moment().startOf('month'), moment().endOf('month')],
-          'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
-        startDate: moment().subtract(29, 'days'),
-        endDate: moment()
+      ranges: {
+        'Today': [moment(), moment()],
+        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+        'This Month': [moment().startOf('month'), moment().endOf('month')],
+        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
       },
-      function(start, end) {
-        $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-      }
+      startDate: moment().subtract(29, 'days'),
+      endDate: moment()
+    },
+    function(start, end) {
+      $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+    }
     );
 
     $('#datepicker').datepicker({
