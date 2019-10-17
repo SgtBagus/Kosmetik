@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Oct 16, 2019 at 08:11 AM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.6
+-- Host: 127.0.0.1
+-- Generation Time: Oct 17, 2019 at 09:13 AM
+-- Server version: 10.1.39-MariaDB
+-- PHP Version: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -338,8 +338,8 @@ INSERT INTO `access_control` (`id`, `folder`, `class`, `method`, `val`) VALUES
 CREATE TABLE `activity` (
   `ip` varchar(255) DEFAULT NULL,
   `link` varchar(255) DEFAULT NULL,
-  `get` longtext DEFAULT NULL,
-  `post` longtext DEFAULT NULL,
+  `get` longtext,
+  `post` longtext,
   `user_id` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -413,7 +413,7 @@ CREATE TABLE `file` (
   `name` varchar(255) DEFAULT NULL,
   `mime` varchar(255) DEFAULT NULL,
   `dir` varchar(255) DEFAULT NULL,
-  `url` text DEFAULT NULL,
+  `url` text,
   `table` varchar(255) DEFAULT NULL,
   `table_id` int(11) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
@@ -426,19 +426,19 @@ CREATE TABLE `file` (
 --
 
 INSERT INTO `file` (`id`, `name`, `mime`, `dir`, `url`, `table`, `table_id`, `status`, `created_at`, `updated_at`) VALUES
-(24, '6950c16c9bcc6995f376b297f163175929730.png', 'image/png', 'webfile/users/6950c16c9bcc6995f376b297f163175929730.png', 'http://192.168.1.13:8080/webfile/users/6950c16c9bcc6995f376b297f163175929730.png', 'user', 23, 'ENABLE', '2019-10-15 00:00:00', '2019-10-15 00:00:00'),
-(25, '6950c16c9bcc6995f376b297f163175940871.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f163175940871.jpg', 'http://192.168.1.13:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175940871.jpg', 'm_kategori', 15, 'ENABLE', '2019-10-15 15:20:35', NULL),
-(26, '6950c16c9bcc6995f376b297f163175960100.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f163175960100.jpg', 'http://192.168.1.13:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175960100.jpg', 'm_kategori', 16, 'ENABLE', '2019-10-15 15:21:43', NULL),
-(27, '6950c16c9bcc6995f376b297f163175958213.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f163175958213.jpg', 'http://192.168.1.13:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175958213.jpg', 'm_kategori', 17, 'ENABLE', '2019-10-15 15:22:22', NULL),
-(28, '6950c16c9bcc6995f376b297f16317596787.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f16317596787.jpg', 'http://192.168.1.13:8080/webfile/kategori/6950c16c9bcc6995f376b297f16317596787.jpg', 'm_kategori', 18, 'ENABLE', '2019-10-15 15:22:44', NULL),
-(29, '6950c16c9bcc6995f376b297f163175963830.png', 'image/png', 'webfile/kategori/6950c16c9bcc6995f376b297f163175963830.png', 'http://192.168.1.13:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175963830.png', 'm_kategori', 19, 'ENABLE', '2019-10-15 15:23:04', NULL),
-(30, '6950c16c9bcc6995f376b297f16317598736.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f16317598736.jpg', 'http://192.168.1.13:8080/webfile/kategori/6950c16c9bcc6995f376b297f16317598736.jpg', 'm_kategori', 20, 'ENABLE', '2019-10-15 15:23:23', NULL),
-(31, '6950c16c9bcc6995f376b297f163175978084.png', 'image/png', 'webfile/kategori/6950c16c9bcc6995f376b297f163175978084.png', 'http://192.168.1.13:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175978084.png', 'm_kategori', 21, 'ENABLE', '2019-10-15 15:23:45', NULL),
-(32, '6950c16c9bcc6995f376b297f163175956371.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f163175956371.jpg', 'http://192.168.1.13:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175956371.jpg', 'm_kategori', 22, 'ENABLE', '2019-10-15 15:24:09', NULL),
-(33, '6950c16c9bcc6995f376b297f163175933626.jpg', 'image/jpeg', 'webfile/produk/6950c16c9bcc6995f376b297f163175933626.jpg', 'http://192.168.1.13:8080/webfile/produk/6950c16c9bcc6995f376b297f163175933626.jpg', 'm_produk', 4, 'ENABLE', '2019-10-15 15:25:34', NULL),
-(34, '6950c16c9bcc6995f376b297f163175948216.jpg', 'image/jpeg', 'webfile/produk/6950c16c9bcc6995f376b297f163175948216.jpg', 'http://192.168.1.13:8080/webfile/produk/6950c16c9bcc6995f376b297f163175948216.jpg', 'm_produk', 5, 'ENABLE', '2019-10-15 15:26:28', NULL),
-(35, '6950c16c9bcc6995f376b297f163175975949.jpg', 'image/jpeg', 'webfile/produk/6950c16c9bcc6995f376b297f163175975949.jpg', 'http://192.168.1.13:8080/webfile/produk/6950c16c9bcc6995f376b297f163175975949.jpg', 'm_produk', 6, 'ENABLE', '2019-10-15 15:26:55', NULL),
-(37, 'default.png', 'image/png', 'webfile/user/default.png', 'http://192.168.1.13:8000/webfile/user/default.png', 'tbl_user', 2, 'ENABLE', '2019-10-16 09:31:42', NULL);
+(24, '6950c16c9bcc6995f376b297f163175929730.png', 'image/png', 'webfile/users/6950c16c9bcc6995f376b297f163175929730.png', 'http://192.168.100.9:8080/webfile/users/6950c16c9bcc6995f376b297f163175929730.png', 'user', 23, 'ENABLE', '2019-10-15 00:00:00', '2019-10-15 00:00:00'),
+(25, '6950c16c9bcc6995f376b297f163175940871.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f163175940871.jpg', 'http://192.168.100.9:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175940871.jpg', 'm_kategori', 15, 'ENABLE', '2019-10-15 15:20:35', NULL),
+(26, '6950c16c9bcc6995f376b297f163175960100.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f163175960100.jpg', 'http://192.168.100.9:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175960100.jpg', 'm_kategori', 16, 'ENABLE', '2019-10-15 15:21:43', NULL),
+(27, '6950c16c9bcc6995f376b297f163175958213.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f163175958213.jpg', 'http://192.168.100.9:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175958213.jpg', 'm_kategori', 17, 'ENABLE', '2019-10-15 15:22:22', NULL),
+(28, '6950c16c9bcc6995f376b297f16317596787.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f16317596787.jpg', 'http://192.168.100.9:8080/webfile/kategori/6950c16c9bcc6995f376b297f16317596787.jpg', 'm_kategori', 18, 'ENABLE', '2019-10-15 15:22:44', NULL),
+(29, '6950c16c9bcc6995f376b297f163175963830.png', 'image/png', 'webfile/kategori/6950c16c9bcc6995f376b297f163175963830.png', 'http://192.168.100.9:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175963830.png', 'm_kategori', 19, 'ENABLE', '2019-10-15 15:23:04', NULL),
+(30, '6950c16c9bcc6995f376b297f16317598736.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f16317598736.jpg', 'http://192.168.100.9:8080/webfile/kategori/6950c16c9bcc6995f376b297f16317598736.jpg', 'm_kategori', 20, 'ENABLE', '2019-10-15 15:23:23', NULL),
+(31, '6950c16c9bcc6995f376b297f163175978084.png', 'image/png', 'webfile/kategori/6950c16c9bcc6995f376b297f163175978084.png', 'http://192.168.100.9:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175978084.png', 'm_kategori', 21, 'ENABLE', '2019-10-15 15:23:45', NULL),
+(32, '6950c16c9bcc6995f376b297f163175956371.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f163175956371.jpg', 'http://192.168.100.9:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175956371.jpg', 'm_kategori', 22, 'ENABLE', '2019-10-15 15:24:09', NULL),
+(33, '6950c16c9bcc6995f376b297f163175933626.jpg', 'image/jpeg', 'webfile/produk/6950c16c9bcc6995f376b297f163175933626.jpg', 'http://192.168.100.9:8080/webfile/produk/6950c16c9bcc6995f376b297f163175933626.jpg', 'm_produk', 4, 'ENABLE', '2019-10-15 15:25:34', NULL),
+(34, '6950c16c9bcc6995f376b297f163175948216.jpg', 'image/jpeg', 'webfile/produk/6950c16c9bcc6995f376b297f163175948216.jpg', 'http://192.168.100.9:8080/webfile/produk/6950c16c9bcc6995f376b297f163175948216.jpg', 'm_produk', 5, 'ENABLE', '2019-10-15 15:26:28', NULL),
+(35, '6950c16c9bcc6995f376b297f163175975949.jpg', 'image/jpeg', 'webfile/produk/6950c16c9bcc6995f376b297f163175975949.jpg', 'http://192.168.100.9:8080/webfile/produk/6950c16c9bcc6995f376b297f163175975949.jpg', 'm_produk', 6, 'ENABLE', '2019-10-15 15:26:55', NULL),
+(36, 'default.png', 'image/png', 'webfile/user/default.png', 'http://192.168.100.9:8000/webfile/user/default.png', 'tbl_user', 2, 'ENABLE', '2019-10-16 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -476,7 +476,7 @@ INSERT INTO `keys` (`id`, `user_id`, `key`, `level`, `ignore_limits`, `is_privat
 CREATE TABLE `konfig` (
   `id` int(11) NOT NULL,
   `slug` varchar(255) DEFAULT NULL,
-  `value` text DEFAULT NULL,
+  `value` text,
   `status` enum('ENABLE','DISABLE') DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
@@ -512,13 +512,13 @@ CREATE TABLE `logs` (
   `id` int(11) NOT NULL,
   `uri` varchar(255) NOT NULL,
   `method` varchar(6) NOT NULL,
-  `params` text DEFAULT NULL,
+  `params` text,
   `api_key` varchar(40) NOT NULL,
   `ip_address` varchar(45) NOT NULL,
   `time` int(11) NOT NULL,
   `rtime` float DEFAULT NULL,
   `authorized` varchar(1) NOT NULL,
-  `response_code` smallint(3) DEFAULT 0
+  `response_code` smallint(3) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -692,7 +692,10 @@ INSERT INTO `menu_master` (`id`, `name`, `icon`, `link`, `urutan`, `parent`, `no
 (27, 'Barang', 'fa fa-list', '#', '1', '0', '', 'ENABLE', '2019-08-16 10:55:53', '2019-09-27 15:32:28'),
 (41, 'Kategori', 'fa fa-th', 'kategori', '2', '27', '', 'ENABLE', '2019-10-11 08:23:14', '2019-10-11 08:24:16'),
 (39, 'Produk', 'fa fa-product-hunt', 'produk', '0', '27', '', 'ENABLE', '2019-10-11 08:20:08', NULL),
-(40, 'Stock', 'fa fa-archive', 'stock', '1', '27', '', 'ENABLE', '2019-10-11 08:21:25', NULL);
+(40, 'Stock', 'fa fa-archive', 'stock', '1', '27', '', 'ENABLE', '2019-10-11 08:21:25', NULL),
+(42, 'Master', 'fa fa-database', '#', '3', '0', '', 'DISABLE', '2019-10-17 14:03:56', NULL),
+(43, 'Provinsi', 'fa fa-circle', 'master/provinsi', '0', '42', '', 'ENABLE', '2019-10-17 14:04:34', NULL),
+(44, 'Kota', 'fa fa-circle', 'master/kota', '1', '42', '', 'ENABLE', '2019-10-17 14:04:48', NULL);
 
 -- --------------------------------------------------------
 
@@ -732,7 +735,7 @@ CREATE TABLE `m_produk` (
   `idProduk` int(11) NOT NULL,
   `idCreator` int(11) NOT NULL,
   `namaProduk` varchar(255) NOT NULL,
-  `deskProduk` text DEFAULT NULL,
+  `deskProduk` text,
   `hargabProduk` double NOT NULL,
   `hargajProduk` double NOT NULL,
   `idKategori` int(11) NOT NULL,
@@ -748,7 +751,7 @@ CREATE TABLE `m_produk` (
 INSERT INTO `m_produk` (`idProduk`, `idCreator`, `namaProduk`, `deskProduk`, `hargabProduk`, `hargajProduk`, `idKategori`, `status`, `created_at`, `updated_at`) VALUES
 (4, 23, 'Pixy Make It Glow Dewy Cushion', 'BB cream atau liquid foundation yang disimpan dalam sponge khusus. Daya tutup yang tinggi sehingga dapat menutup kekurangan di wajah seperti noda hitam dan bekas jerawat dengan sangat baik. Mengandung Botanical Extract seperti Olive Oil, Jojoba Oil dan Yuzu extract yang membantu menutrisi kulit dari dalam, sehingga membuat wajah nampak sehat bercahaya. Mengandung SPF 23 & PA++.', 100000, 117000, 15, 'ENABLE', '2019-10-15 15:25:34', '2019-10-16 10:56:15'),
 (5, 23, 'Make Over Powerstay Matte Powder Foundation', 'Bedak padat yang mengandung foundation dan SPF!\r\n\r\nMake Over Powerstay Matte Powder Foundation merupakan bedak padat yang mengandung foundation, tahan lama hingga 10 jam dengan hasil matte yang sempurna namun tidak terlihat flat dan tebal. Dilengkapi dengan Microfine Color-Rich Pigment Technology dan Fade Resistant Formula sehingga menghasilkan warna yang merata dan menyatu dengan kulit wajah, menutup kekurangan pada wajah dengan sempurna namun tetap terasa ringan.', 150000, 167000, 15, 'ENABLE', '2019-10-15 15:26:27', '2019-10-16 11:07:18'),
-(6, 23, 'Wardah Everyday BB Cream', 'Wardah Everyday BB Cream memiliki kemasan tube berwarna hijau tosca yang praktis dan ringan untuk dibawa-bawa. BB cream Wardah ini dibungkus dalam box dengan tekstur doff, pada box-nya terdapat penjelasan mengenai produk, klaim, cara pengguaan, ingredients serta label Halal dan nomor BPOM', 25000, 45000, 15, 'ENABLE', '2019-10-15 15:26:55', '2019-10-16 11:08:13');
+(6, 23, 'Wardah Everyday BB Cream', 'Wardah Everyday BB Cream memiliki kemasan tube berwarna hijau tosca yang praktis dan ringan untuk dibawa-bawa. BB cream Wardah ini dibungkus dalam box dengan tekstur doff, pada box-nya terdapat penjelasan mengenai produk, klaim, cara pengguaan, ingredients serta label Halal dan nomor BPOM', 25000, 45000, 16, 'ENABLE', '2019-10-15 15:26:55', '2019-10-17 13:46:37');
 
 -- --------------------------------------------------------
 
@@ -767,6 +770,20 @@ CREATE TABLE `produk_stok` (
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `produk_stok`
+--
+
+INSERT INTO `produk_stok` (`idStok`, `idCreator`, `idProduk`, `kodeBarang`, `statusStok`, `status`, `created_at`, `updated_at`) VALUES
+(1, 23, 4, '129387120232', 'TERSEDIA', 'ENABLE', '2019-10-17 09:38:53', '0000-00-00 00:00:00'),
+(2, 23, 5, '129387120235', 'TERSEDIA', 'ENABLE', '2019-10-17 09:39:16', '2019-10-17 10:29:27'),
+(3, 23, 5, '129387123235', 'TERSEDIA', 'DISABLE', '2019-10-17 09:39:22', '2019-10-17 10:29:40'),
+(4, 23, 6, '123347123235', 'TERSEDIA', 'ENABLE', '2019-10-17 09:39:29', '2019-10-17 10:29:50'),
+(5, 23, 4, '312312343sf12', 'TERSEDIA', 'ENABLE', '2019-10-17 09:39:37', '2019-10-17 10:29:56'),
+(6, 23, 5, '12312312323', 'TERSEDIA', 'ENABLE', '2019-10-17 12:54:13', '0000-00-00 00:00:00'),
+(7, 23, 5, '123123123412323', 'TERSEDIA', 'ENABLE', '2019-10-17 13:03:56', '0000-00-00 00:00:00'),
+(8, 23, 5, '23123', 'TERSEDIA', 'ENABLE', '2019-10-17 13:04:00', '0000-00-00 00:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -776,8 +793,8 @@ CREATE TABLE `produk_stok` (
 CREATE TABLE `report` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `query` longtext DEFAULT NULL,
-  `header` text DEFAULT NULL,
+  `query` longtext,
+  `header` text,
   `status` enum('ENABLE','DISABLE') DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
@@ -813,7 +830,7 @@ CREATE TABLE `role` (
   `id` int(11) NOT NULL,
   `role` varchar(255) DEFAULT NULL,
   `status` enum('DISABLE','ENABLE') DEFAULT NULL,
-  `menu` text DEFAULT NULL,
+  `menu` text,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -823,7 +840,7 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`id`, `role`, `status`, `menu`, `created_at`, `updated_at`) VALUES
-(17, 'Super Admin', 'ENABLE', '[\"17\",\"27\",\"41\",\"39\",\"40\",\"16\",\"24\"]', '2018-10-12 17:03:59', '2019-10-15 11:49:32');
+(17, 'Super Admin', 'ENABLE', '[\"17\",\"27\",\"41\",\"39\",\"40\",\"16\",\"42\",\"43\",\"44\",\"24\"]', '2018-10-12 17:03:59', '2019-10-17 14:04:55');
 
 -- --------------------------------------------------------
 
@@ -857,15 +874,15 @@ INSERT INTO `tbl_user` (`id`, `name`, `email`, `password`, `phone`, `status`, `c
 
 CREATE TABLE `transaksi` (
   `idTransaksi` int(11) NOT NULL,
-  `idCreator` int(11) NOT NULL,
+  `idUser` int(11) DEFAULT NULL,
+  `idAdmin` int(11) DEFAULT NULL,
   `kodeTransaksi` varchar(255) NOT NULL,
   `totalTransaksi` double NOT NULL,
   `totalBeliProduk` double NOT NULL,
   `jumlahBarang` double NOT NULL,
   `alamatKirim` text NOT NULL,
-  `id_provinsi` int(11) NOT NULL,
-  `id_kota` int(11) NOT NULL,
   `nama_pengirim` varchar(255) NOT NULL,
+  `noHubungi` varchar(225) DEFAULT NULL,
   `statusTransaksi` varchar(255) NOT NULL,
   `status` enum('ENABLE','DISABLE') NOT NULL,
   `created_at` datetime NOT NULL,
@@ -880,17 +897,26 @@ CREATE TABLE `transaksi` (
 
 CREATE TABLE `transaksi_produk` (
   `id` int(11) NOT NULL,
-  `kodeKeranjang` varchar(255) NOT NULL,
-  `idCreator` int(11) NOT NULL,
+  `kodeKeranjang` varchar(255) DEFAULT NULL,
+  `idUser` int(11) DEFAULT NULL,
+  `idAdmin` int(11) DEFAULT NULL,
   `idProduk` int(11) NOT NULL,
-  `idCustomer` int(11) NOT NULL,
-  `hargabProduk` double NOT NULL,
-  `hargajProduk` double NOT NULL,
+  `jumlahProduk` int(11) NOT NULL,
+  `hargaProduk` float NOT NULL,
+  `totalHarga` float NOT NULL,
   `statusTransaksi` varchar(255) NOT NULL,
   `status` enum('ENABLE','DISABLE') NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaksi_produk`
+--
+
+INSERT INTO `transaksi_produk` (`id`, `kodeKeranjang`, `idUser`, `idAdmin`, `idProduk`, `jumlahProduk`, `hargaProduk`, `totalHarga`, `statusTransaksi`, `status`, `created_at`, `updated_at`) VALUES
+(4, NULL, 2, NULL, 5, 1, 167000, 167000, 'KERANJANG', 'ENABLE', '2019-10-17 12:07:12', '0000-00-00 00:00:00'),
+(7, NULL, 2, NULL, 6, 1, 45000, 45000, 'KERANJANG', 'ENABLE', '2019-10-17 13:46:45', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1039,7 +1065,7 @@ ALTER TABLE `access_control`
 -- AUTO_INCREMENT for table `file`
 --
 ALTER TABLE `file`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `keys`
@@ -1063,7 +1089,7 @@ ALTER TABLE `logs`
 -- AUTO_INCREMENT for table `menu_master`
 --
 ALTER TABLE `menu_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `m_kategori`
@@ -1081,7 +1107,7 @@ ALTER TABLE `m_produk`
 -- AUTO_INCREMENT for table `produk_stok`
 --
 ALTER TABLE `produk_stok`
-  MODIFY `idStok` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idStok` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `report`
@@ -1111,7 +1137,7 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `transaksi_produk`
 --
 ALTER TABLE `transaksi_produk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user`

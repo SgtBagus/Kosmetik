@@ -19,6 +19,9 @@ class Produk extends MY_Controller
 		$data['kategori'] = $this->mymodel->selectDataone('m_kategori', array('idKategori' => $data['produk']['idKategori']));
 		$data['file'] = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'm_produk'));
 		$data['rowStock'] = $this->mymodel->selectWithQuery("SELECT count(idStok) as rowstock from produk_stok WHERE idProduk = ".$id." AND statusStok = 'TERSEDIA' AND status = 'ENABLE'");
+		
+		$data['totalkeranjang'] = $this->mymodel->selectDataone('transaksi_produk', array('idUser' => $this->session->userdata('id'), 'idProduk' => $id, 'statusTransaksi' => 'KERANJANG'));
+
 		$data['page_name'] = "Kategori";
 		$this->load->view('modals/produk', $data);
 	}
@@ -44,7 +47,7 @@ class Produk extends MY_Controller
 			foreach ($produk as $row) {
 				$photo = $this->mymodel->selectDataone('file', array('table_id' => $row['idProduk'], 'table' => 'm_produk'));
 				$kategori = $this->mymodel->selectDataone('m_kategori', array('idKategori' => $row['idKategori']));
-				$desk = strlen($row["namaProduk"]) > 25 ? substr($row["namaProduk"], 0, 25) . "..." : $row["namaProduk"];
+				$title = strlen($row["namaProduk"]) > 25 ? substr($row["namaProduk"], 0, 25) . "..." : $row["namaProduk"];
 				$rowStock = $this->mymodel->selectWithQuery("SELECT count(idStok) as rowstock from produk_stok WHERE idProduk = ".$row['idProduk']." AND statusStok = 'TERSEDIA' AND status = 'ENABLE'");
 				$output .= '<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="box box-solid round" onclick="view('.$row['idProduk'].')">
@@ -53,7 +56,7 @@ class Produk extends MY_Controller
               	</div>
               	<div class="box-body" align="center">
                 <h4 style="margin-top:0px">
-                  <b>' . $desk . '
+                  <b>' . $title . '
                   </b><br>
                   <small>' . $kategori['namaKategori'] . '</small>
                 </h4>
@@ -66,5 +69,30 @@ class Produk extends MY_Controller
 			}
 		}
 		echo $output;
+	}
+
+	public function addCrat($id){
+		$idCreator = $this->session->userdata('id');
+		$produk = $this->mymodel->selectDataone('m_produk', array('idProduk' => $id));
+
+		$transaksi_produk = $this->mymodel->selectDataone('transaksi_produk', array('idUser' => $idCreator, 'idProduk' => $id, 'statusTransaksi' => 'KERANJANG'));
+		if($transaksi_produk){
+			$dt['jumlahProduk'] = $transaksi_produk['jumlahProduk'] + 1;
+			$dt['totalHarga'] = $produk['hargajProduk'] * ($transaksi_produk['jumlahProduk'] + 1);
+			$dt['updated_at'] = date('Y-m-d H:i:s');
+			$this->mymodel->updateData('transaksi_produk', $dt, array('id' => $transaksi_produk['id']));
+		}else{
+			$dt['idUser'] = $idCreator;
+			$dt['idProduk'] = $id;
+			$dt['jumlahProduk'] = 1;
+			$dt['hargaProduk'] = $produk['hargajProduk'];
+			$dt['totalHarga'] = $produk['hargajProduk'];
+			$dt['statusTransaksi'] = 'KERANJANG';
+			$dt['status'] = 'ENABLE';
+			$dt['created_at'] = date('Y-m-d H:i:s');
+			$this->db->insert('transaksi_produk', $dt);
+		}
+		
+		$this->alert->alertsuccess('Berhasil Ditambahkan Di Keranjang!');
 	}
 }

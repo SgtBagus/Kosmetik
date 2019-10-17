@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>KOSMETIK</title>
+  <title>STOCKIST</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="<?= base_url('assets/') ?>bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?= base_url('assets/') ?>bower_components/font-awesome/css/font-awesome.min.css">
@@ -47,7 +47,7 @@ $this->session->set_userdata(array('url_session' => $actual_link));
           <div class="navbar-header">
             <a href="<?= base_url() ?>" class="navbar-brand">
               <b>
-                KOSMETIK
+              STOCKIST
               </b>
             </a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
@@ -88,7 +88,10 @@ $this->session->set_userdata(array('url_session' => $actual_link));
                 <li>
                   <a href="<?= base_url('cart') ?>">
                     <i class="fa fa-shopping-cart"></i>
-                    <span class="label label-danger">9</span>
+                    <?php 
+                    $rowCart = $this->mymodel->selectWithQuery("SELECT count(id) as rowCart from transaksi_produk WHERE idUser = ".$this->session->userdata('id')." AND statusTransaksi = 'KERANJANG'");
+                    ?>
+                    <span class="label label-danger"><?= $rowCart[0]['rowCart'] ?></span>
                   </a>
                 </li>
                 <li class="dropdown user user-menu">
@@ -143,21 +146,21 @@ $this->session->set_userdata(array('url_session' => $actual_link));
       <div class="container" style="margin-top: 15px">
         <div class="row">
           <div class="col-md-3 col-sm-6 col-xs-12 text-center">
-            <img src="<?= base_url('assets/') ?>icon.png" width="100px" height="100px">
-            <h1><b>AGNOV.ID</b></h1>
+            <img src="https://pngimage.net/wp-content/uploads/2018/06/kosmetik-png.png" width="100%" height="150px">
+            <h1><b>STOCKIST.COM</b></h1>
             <p>Copyright <i class="fa fa-copyright"></i> 2019</p>
           </div>
           <div class="col-md-3 col-sm-6 col-xs-12 text-center">
-            <h2><b>AGNOV</b></h2>
+            <h2><b>STOCKIST</b></h2>
             <div class="row">
               <div class="col-md-6 col-sm-6 col-xs-6">
-                <a href="<?= base_url('project') ?>" style="color: white">
-                  Proyek
+                <a href="<?= base_url('kategori') ?>" style="color: white">
+                  Kategori
                 </a>
               </div>
               <div class="col-md-6 col-sm-6 col-xs-6">
-                <a href="<?= base_url('blog') ?>" style="color: white">
-                  Blog
+                <a href="<?= base_url('produk') ?>" style="color: white">
+                  Produk
                 </a>
               </div>
             </div>
@@ -239,7 +242,6 @@ $this->session->set_userdata(array('url_session' => $actual_link));
       "searching": true,
       "ordering": true,
       "info": false,
-      "scrollX": true,
       "scrollY": true,
       "language": {
         "search": "<b> Pencarian : </b>",
@@ -294,6 +296,22 @@ $this->session->set_userdata(array('url_session' => $actual_link));
       reader.readAsDataURL(input.files[0]);
     }
   };
+
+  function rupiah(value) {
+    var number_string = value.toString(),
+      split = number_string.split(','),
+      sisa = split[0].length % 3,
+      rupiah = split[0].substr(0, sisa),
+      ribuan = split[0].substr(sisa).match(/\d{1,3}/gi);
+
+    if (ribuan) {
+      separator = sisa ? '.' : '';
+      rupiah += separator + ribuan.join('.');
+    }
+    rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+
+    return "Rp "+rupiah;
+  }
 </script>
 
 </html>

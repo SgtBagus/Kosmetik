@@ -16,57 +16,81 @@ if ($this->session->userdata('session_sop') == "") {
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="box box-solid round">
                             <div class="box-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th colspan="2">Product</th>
-                                                <th>Price</th>
-                                                <th>Quantity</th>
-                                                <th>Remove</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                <div class="show_error"></div>
+                                <table class="table" id="datatable">
+                                    <thead>
+                                        <tr>
+                                            <th>Produk</th>
+                                            <th></th>
+                                            <th>Qty</th>
+                                            <th>Harga</th>
+                                            <th>Total harga</th>
+                                            <th>Remove</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($transaksi_produk as $row) {
+                                            $photo = $this->mymodel->selectDataone('file', array('table_id' => $row['idProduk'], 'table' => 'm_produk'));
+                                            $produk = $this->mymodel->selectDataone('m_produk', array('idProduk' => $row['idProduk']));
+                                            $kategori = $this->mymodel->selectDataone('m_kategori', array('idKategori' => $produk['idKategori']));
+                                            $desk = strlen($produk["deskProduk"]) > 50 ? substr($produk["deskProduk"], 0, 50) . "..." : $produk["deskProduk"];
+                                            $rowStock = $this->mymodel->selectWithQuery("SELECT count(idStok) as rowstock from produk_stok WHERE idProduk = " . $row['idProduk'] . " AND statusStok = 'TERSEDIA' AND status = 'ENABLE'");
+                                            ?>
                                             <tr>
                                                 <td align="center">
-                                                    <img src="https://res.cloudinary.com/mhmd/image/upload/v1556670479/product-1_zrifhn.jpg" alt="" width="100px" height="100px" class="img-fluid rounded shadow-sm">
+                                                    <img src="<?= $photo['url'] ?>" alt="" width="100px" height="100px" class="img-fluid rounded shadow-sm">
                                                 </td>
                                                 <td>
-                                                    <h3>
-                                                        <a href="#" class="text-dark d-inline-block align-middle">
-                                                            Timex Unisex Originals
-                                                        </a>
-                                                    </h3>
-                                                    <span class="text-muted font-weight-normal font-italic d-block">Category: Watches</span>
-                                                    <input type="hidden" class="form-control" value="1" name="produk">
+                                                    <h4><?= $produk['namaProduk'] ?></h4>
+                                                    <span class="text-muted font-weight-normal font-italic d-block">Kategori: <?= $kategori['namaKategori'] ?>
+                                                        <br><small><?= $desk ?></small>
+                                                    </span>
                                                 </td>
-                                                <td><b>Rp 15.000,00,-</b></td>
                                                 <td align="center">
                                                     <div class="input-group" style="width:120px">
                                                         <div class="input-group-btn">
-                                                            <button type="button" class="btn btn-primary" id="minValue">
+                                                            <button id="minValue-<?= $row['id'] ?>" type="button" class="btn btn-primary" onclick="minValue(<?= $row['id'] ?>)" <?php if ($row['jumlahProduk'] <= 1) {
+                                                                                                                                                                                        echo "disabled";
+                                                                                                                                                                                    } ?>>
                                                                 <i class="fa fa-minus"></i>
                                                             </button>
                                                         </div>
-                                                        <input type="text" class="form-control" value="15" name="value" id="value">
+                                                        <input type="text" class="form-control" value="<?= $row['jumlahProduk'] ?>" id="value-<?= $row['id'] ?>">
                                                         <div class="input-group-btn">
-                                                            <button type="button" class="btn btn-primary" id="addValue">
+                                                            <button id="addValue-<?= $row['id'] ?>" type="button" class="btn btn-primary" onclick="addValue(<?= $row['id'] ?>)" <?php if ($row['jumlahProduk'] >= $rowStock[0]['rowstock']) {
+                                                                                                                                                                                        echo "disabled";
+                                                                                                                                                                                    } ?>>
                                                                 <i class="fa fa-plus"></i>
                                                             </button>
                                                         </div>
                                                     </div>
+                                                    <input type="hidden" value="<?= $rowStock[0]['rowstock'] ?>" id="stock-<?= $row['id'] ?>">
+                                                    <br>
+                                                    <span class="text-muted font-weight-normal font-italic d-block">
+                                                        Stock Tersedia : <b><?= $rowStock[0]['rowstock'] ?></b>
+                                                    </span>
                                                 </td>
                                                 <td>
-                                                    <a href="#">
-                                                        <button class="btn btn-danger">
-                                                            <i class="fa fa-trash"></i>
-                                                        </button>
-                                                    </a>
+                                                    <b>
+                                                        Rp <?= number_format($produk['hargajProduk'], 0, ',', '.') ?>
+                                                        <input type="hidden" value="<?= $produk['hargajProduk'] ?>" id="hargaProduk-<?= $row['id'] ?>">
+                                                    </b>
+                                                </td>
+                                                <td>
+                                                    <b id="totalharga-<?= $row['id'] ?>">
+                                                        Rp <?= number_format($row['totalHarga'], 0, ',', '.') ?>
+                                                        <input type="hidden" value="<?= $row['totalHarga'] ?>" id="totalHarga-<?= $row['id'] ?>">
+                                                    </b>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-send btn-danger" onclick="reqDelete(<?=$row['id']?>)">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
                                                 </td>
                                             </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -100,15 +124,37 @@ if ($this->session->userdata('session_sop') == "") {
     </div>
 </div>
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('#addValue').click(function() {
-            var value = $('#value').val();
-            $('#value').val(parseInt(value) + 1);
-        });
+    function addValue(id) {
+        var value = $('#value-' + id).val();
+        $('#value-' + id).val(parseInt(value) + 1);
+        if ($('#value-' + id).val() >= $('#stock-' + id).val()) {
+            $('#addValue-' + id).attr("disabled", true);
+        }
+        $('#minValue-' + id).attr("disabled", false);
 
-        $('#minValue').click(function() {
-            var value = $('#value').val();
-            $('#value').val(parseInt(value) - 1);
-        });
-    });
+        totalHarga(id);
+    }
+
+    function minValue(id) {
+        var value = $('#value-' + id).val();
+        $('#value-' + id).val(parseInt(value) - 1);
+        if ($('#value-' + id).val() == '1') {
+            $('#minValue-' + id).attr("disabled", true);;
+        }
+        $('#addValue-' + id).attr("disabled", false);
+        totalHarga(id);
+    }
+
+    function totalHarga(id) {
+        var hargaProduk = parseInt($('#hargaProduk-' + id).val());
+        var qtyProduk = parseInt($('#value-' + id).val());
+
+        $('#totalharga-' + id).text(rupiah(hargaProduk * qtyProduk));
+    }
+
+    function reqDelete(id){
+      location.href = "<?= base_url('cart/delete/') ?>"+id;
+    }
+
+    $(document).ready(function() {});
 </script>
