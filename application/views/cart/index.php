@@ -6,17 +6,17 @@ if ($this->session->userdata('session_sop') == "") {
 <div class="content-wrapper">
     <div class="container">
         <section class="content">
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <h3>Keranjang</h3>
-                </div>
-            </div>
-            <form action="#" method="GET">
+            <form action="<?= base_url('cart/checkout') ?>" method="POST" id="checkout">
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
+                        <h3>Keranjang</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="show_error"></div>
                         <div class="box box-solid round">
                             <div class="box-body">
-                                <div class="show_error"></div>
                                 <table class="table" id="datatable">
                                     <thead>
                                         <tr>
@@ -29,7 +29,9 @@ if ($this->session->userdata('session_sop') == "") {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($transaksi_produk as $row) {
+                                        <?php 
+                                        $i = 0;
+                                            foreach ($transaksi_produk as $row) {
                                             $photo = $this->mymodel->selectDataone('file', array('table_id' => $row['idProduk'], 'table' => 'm_produk'));
                                             $produk = $this->mymodel->selectDataone('m_produk', array('idProduk' => $row['idProduk']));
                                             $kategori = $this->mymodel->selectDataone('m_kategori', array('idKategori' => $produk['idKategori']));
@@ -39,6 +41,7 @@ if ($this->session->userdata('session_sop') == "") {
                                             <tr>
                                                 <td align="center">
                                                     <img src="<?= $photo['url'] ?>" alt="" width="100px" height="100px" class="img-fluid rounded shadow-sm">
+                                                    <input type="hidden" name="dtd[<?= $i ?>][id]" value="<?= $row['id'] ?>">
                                                 </td>
                                                 <td>
                                                     <h4><?= $produk['namaProduk'] ?></h4>
@@ -55,7 +58,7 @@ if ($this->session->userdata('session_sop') == "") {
                                                                 <i class="fa fa-minus"></i>
                                                             </button>
                                                         </div>
-                                                        <input type="text" class="form-control" value="<?= $row['jumlahProduk'] ?>" id="value-<?= $row['id'] ?>">
+                                                        <input type="text" class="form-control" value="<?= $row['jumlahProduk'] ?>" id="value-<?= $row['id'] ?>" name="dtd[<?= $i ?>][jumlahProduk]">
                                                         <div class="input-group-btn">
                                                             <button id="addValue-<?= $row['id'] ?>" type="button" class="btn btn-primary" onclick="addValue(<?= $row['id'] ?>)" <?php if ($row['jumlahProduk'] >= $rowStock[0]['rowstock']) {
                                                                                                                                                                                         echo "disabled";
@@ -79,16 +82,16 @@ if ($this->session->userdata('session_sop') == "") {
                                                 <td>
                                                     <b id="totalharga-<?= $row['id'] ?>">
                                                         Rp <?= number_format($row['totalHarga'], 0, ',', '.') ?>
-                                                        <input type="hidden" value="<?= $row['totalHarga'] ?>" id="totalHarga-<?= $row['id'] ?>">
                                                     </b>
+                                                    <input type="hidden" value="<?= $row['totalHarga'] ?>" id="valueHarga-<?= $row['id'] ?>" name="dtd[<?= $i ?>][totalHarga]">
                                                 </td>
                                                 <td>
-                                                    <button type="button" class="btn btn-send btn-danger" onclick="reqDelete(<?=$row['id']?>)">
+                                                    <button type="button" class="btn btn-danger" onclick="reqDelete(<?= $row['id'] ?>)">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </td>
                                             </tr>
-                                        <?php } ?>
+                                        <?php $i++; } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -96,25 +99,32 @@ if ($this->session->userdata('session_sop') == "") {
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="box box-solid round">
                             <div class="box-header">
-                                Catatan!
+                                Mohon Untuk Mengisi Form Berikut !
                             </div>
                             <div class="box-body">
                                 <div class="form-group">
+                                    <label>Nama Pengirim</label>
+                                    <input type="text" class="form-control" name="dt[nama_pengirim]">
+                                </div>
+                                <div class="form-group">
                                     <label>Nomor Yang Dapat Dihubungi</label>
-                                    <input type="text" name="nomor" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                                    <input type="text" name="dt[noHubungi]" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
                                 </div>
                                 <div class="form-group">
                                     <label>Alamat Lengkap</label>
-                                    <textarea class="form-control" rows="3" name="alamat"></textarea>
+                                    <textarea class="form-control" rows="3" name="dt[alamatKirim]"></textarea>
                                 </div>
                             </div>
                         </div>
+                        <div class="show_error"></div>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <button type="submit" class="btn btn-success btn-block btn-lg round">
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <button type="submit" class="btn btn-send btn-success btn-block btn-lg round">
                             LANJUTKAN CHECKOUT
                         </button>
                     </div>
@@ -150,11 +160,48 @@ if ($this->session->userdata('session_sop') == "") {
         var qtyProduk = parseInt($('#value-' + id).val());
 
         $('#totalharga-' + id).text(rupiah(hargaProduk * qtyProduk));
+        $('#valueHarga-' + id).val(hargaProduk * qtyProduk);
     }
 
-    function reqDelete(id){
-      location.href = "<?= base_url('cart/delete/') ?>"+id;
+    function reqDelete(id) {
+        location.href = "<?= base_url('cart/delete/') ?>" + id;
     }
 
-    $(document).ready(function() {});
+    $("#checkout").submit(function() {
+        var form = $(this);
+        var mydata = new FormData(this);
+        $.ajax({
+            type: "POST",
+            url: form.attr("action"),
+            data: mydata,
+            cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend: function() {
+                $(".btn-send").addClass("disabled").html("Processing...").attr('disabled', true);
+                form.find(".show_error").slideUp().html("");
+            },
+
+            success: function(response, textStatus, xhr) {
+                var str = response;
+                if (str.indexOf("success") != -1) {
+                    form.find(".show_error").hide().html(response).slideDown("fast");
+                    setTimeout(function() {
+
+                    }, 1000);
+
+                    $(".btn-send").removeClass("disabled").html('LANJUTKAN CHECKOUT').attr('disabled', false);
+                } else {
+                    form.find(".show_error").hide().html(response).slideDown("fast");
+                    $(".btn-send").removeClass("disabled").html('LANJUTKAN CHECKOUT').attr('disabled', false);
+                }
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                console.log(xhr);
+                $(".btn-send").removeClass("disabled").html('LANJUTKAN CHECKOUT').attr('disabled', false);
+                form.find(".show_error").hide().html(xhr).slideDown("fast");
+            }
+        });
+        return false;
+    });
 </script>
