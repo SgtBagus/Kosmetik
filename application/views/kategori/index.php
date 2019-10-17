@@ -12,7 +12,7 @@
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="box box-solid round">
               <div class="box-header" align="center">
-                <img src="<?= $photo['url'] ?>" alt="Second slide" style="height: 180px; width: 100%; object-fit: cover; display: inline;">
+                <img class="lazy" src="<?= $photo['url'] ?>" alt="Second slide" style="height: 180px; width: 100%; object-fit: cover; display: inline;">
               </div>
               <div class="box-body" align="center">
                 <h4 style="margin-top:0px"><b><?= $row['namaKategori'] ?></b></h4>

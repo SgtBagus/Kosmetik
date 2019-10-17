@@ -1,9 +1,3 @@
-<?php
-if ($this->session->userdata('role_id') == '17') {
-  redirect(base_url('admin'));
-}
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -27,11 +21,7 @@ if ($this->session->userdata('role_id') == '17') {
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <script src="<?= base_url('assets/') ?>/jquery/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-
   <link rel="icon" href="<?= base_url('assets/') ?>icon.png">
-
-  <script type="text/javascript" src='https://maps.google.com/maps/api/js?libraries=places&key=AIzaSyASx6JCkfcpuUIDho2q_G_ayRSsq4BpV2Q'></script>
-  <script src="<?= base_url('assets/') ?>maps/locationpicker.jquery.min.js"></script>
   <link rel="stylesheet" href="<?= base_url('assets/') ?>custom/css_custom.css">
   <style>
     #myList li {
@@ -216,11 +206,11 @@ $this->session->set_userdata(array('url_session' => $actual_link));
 <script src="<?= base_url('assets/') ?>dist/js/demo.js"></script>
 <script src="<?= base_url('assets/') ?>custom/number-separator.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.min.js"></script>
+<script src="<?= base_url('assets/') ?>plugins/jquery.lazy-master/jquery.lazy.min.js"></script>
 <script>
   function formatNumber(num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
   }
-
 
   function lazzy_loader(limit) {
     var output = '<div class="row">' +
@@ -230,8 +220,10 @@ $this->session->set_userdata(array('url_session' => $actual_link));
       '</div>';
     $('#load_data_message').html(output);
   }
-
   $(function() {
+    $('.lazy').lazy({
+      placeholder: "data:image/gif;base64,R0lGODlhEALAPQAPzl5uLr9Nrl8e7..."
+    });
     $('.select2').select2()
     $('#datemask').inputmask('dd/mm/yyyy', {
       'placeholder': 'dd/mm/yyyy'

@@ -4,9 +4,9 @@
     <h4> Harga : <b> Rp. <?= number_format($produk['hargajProduk'],0,',','.')?>,- </b></h4>
   </div>
   <div class="col-md-6 col-xs-12" align="center">
-    <img src="<?= $file['url'] ?>" alt="Second slide" style="height: 100%; width: 100%; object-fit: cover; display: inline;">
+    <img class="lazy" src="<?= $file['url'] ?>" alt="Second slide" style="height: 100%; width: 100%; object-fit: cover; display: inline;">
     <br>
-    <h4> Sisa Stock : <b>15</b> </h4>
+    <h4> Sisa Stock : <b><?= $rowStock[0]['rowstock'] ?></b> </h4>
   </div>
   <div class="col-md-6 col-xs-12">
     <p> <?= $produk['deskProduk'] ?></p>

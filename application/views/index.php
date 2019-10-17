@@ -53,7 +53,7 @@
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="box box-solid round">
               <div class="box-header" align="center">
-                <img src="<?= $photo['url'] ?>" alt="Second slide" style="height: 180px; width: 100%; object-fit: cover; display: inline;">
+                <img class="lazy" src="<?= $photo['url'] ?>" alt="Second slide" style="height: 180px; width: 100%; object-fit: cover; display: inline;">
               </div>
               <div class="box-body" align="center">
                 <h4 style="margin-top:0px"><b><?= $row['namaKategori'] ?></b></h4>
@@ -108,11 +108,13 @@
       <div class="row">
         <?php foreach ($produk as $row) {
           $photo = $this->mymodel->selectDataone('file', array('table_id' => $row['idProduk'], 'table' => 'm_produk'));
-          $kategori = $this->mymodel->selectDataone('m_kategori', array('idKategori' => $row['idKategori'])); ?>
+          $kategori = $this->mymodel->selectDataone('m_kategori', array('idKategori' => $row['idKategori'])); 
+          $rowStock = $this->mymodel->selectWithQuery("SELECT count(idStok) as rowstock from produk_stok WHERE idProduk = ".$row['idProduk']." AND statusStok = 'TERSEDIA' AND status = 'ENABLE'");
+          ?>
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="box box-solid round" onclick="view(<?= $row['idProduk'] ?>)">
               <div class="box-header" align="center">
-                <img src="<?= $photo['url'] ?>" alt="Second slide" style="height: 180px; width: 100%; object-fit: cover; display: inline;">
+                <img class="lazy" src="<?= $photo['url'] ?>" alt="Second slide" style="height: 180px; width: 100%; object-fit: cover; display: inline;">
               </div>
               <div class="box-body" align="center">
                 <h4 style="margin-top:0px">
@@ -121,7 +123,7 @@
                   </b><br>
                   <small><?= $kategori['namaKategori'] ?></small>
                 </h4>
-                Sisa Stock : <b>15</b>
+                Sisa Stock : <b><?= $rowStock[0]['rowstock'] ?></b>
                 <br>
                 Harga : <b> Rp. <?= number_format($row['hargajProduk'], 0, ',', '.') ?>,- </b>
               </div>

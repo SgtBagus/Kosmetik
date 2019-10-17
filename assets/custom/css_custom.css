@@ -233,3 +233,12 @@ a.float:hover {
 .item {
     height: 300px;
 }
+
+img.lazy {
+    width: 700px;
+    height: 467px;
+    display: block;
+    background-image: url('tenor.gif');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}

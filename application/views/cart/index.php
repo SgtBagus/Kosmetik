@@ -1,3 +1,8 @@
+<?php
+if ($this->session->userdata('session_sop') == "") {
+    header('Location: ' . base_url());
+}
+?>
 <div class="content-wrapper">
     <div class="container">
         <section class="content">
@@ -96,14 +101,14 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#addValue').click(function(){
+        $('#addValue').click(function() {
             var value = $('#value').val();
-            $('#value').val(parseInt(value)+1);
+            $('#value').val(parseInt(value) + 1);
         });
 
-        $('#minValue').click(function(){
+        $('#minValue').click(function() {
             var value = $('#value').val();
-            $('#value').val(parseInt(value)-1);
+            $('#value').val(parseInt(value) - 1);
         });
     });
 </script>
