@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 18, 2019 at 08:12 AM
+-- Generation Time: Oct 18, 2019 at 09:21 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.6
 
@@ -686,16 +686,19 @@ CREATE TABLE `menu_master` (
 --
 
 INSERT INTO `menu_master` (`id`, `name`, `icon`, `link`, `urutan`, `parent`, `notif`, `status`, `created_at`, `updated_at`) VALUES
-(16, 'User', 'fa fa-users', 'user', '2', '0', '', 'ENABLE', '2019-07-28 08:40:37', '2019-08-06 12:44:56'),
+(16, 'User', 'fa fa-user', 'user', '5', '0', '', 'ENABLE', '2019-07-28 08:40:37', '2019-10-18 13:42:04'),
 (17, 'Dashboard', 'fa fa-dashboard', '/', '1', '0', '', 'ENABLE', '2019-08-02 13:07:26', '2019-08-02 13:09:12'),
-(24, 'Report', 'fa fa-file', '#', '7', '0', '', 'ENABLE', '2019-08-06 14:31:50', NULL),
-(27, 'Barang', 'fa fa-list', '#', '1', '0', '', 'ENABLE', '2019-08-16 10:55:53', '2019-09-27 15:32:28'),
+(24, 'Report', 'fa fa-file', '#', '7', '0', '', 'DISABLE', '2019-08-06 14:31:50', NULL),
+(27, 'Barang', 'fa fa-list', '#', '3', '0', '', 'ENABLE', '2019-08-16 10:55:53', '2019-10-18 13:44:20'),
 (41, 'Kategori', 'fa fa-th', 'kategori', '2', '27', '', 'ENABLE', '2019-10-11 08:23:14', '2019-10-11 08:24:16'),
 (39, 'Produk', 'fa fa-product-hunt', 'produk', '0', '27', '', 'ENABLE', '2019-10-11 08:20:08', NULL),
 (40, 'Stock', 'fa fa-archive', 'stock', '1', '27', '', 'ENABLE', '2019-10-11 08:21:25', NULL),
 (42, 'Master', 'fa fa-database', '#', '3', '0', '', 'DISABLE', '2019-10-17 14:03:56', NULL),
-(43, 'Provinsi', 'fa fa-circle', 'master/provinsi', '0', '42', '', 'ENABLE', '2019-10-17 14:04:34', NULL),
-(44, 'Kota', 'fa fa-circle', 'master/kota', '1', '42', '', 'ENABLE', '2019-10-17 14:04:48', NULL);
+(43, 'Provinsi', 'fa fa-circle', 'master/provinsi', '0', '42', '', 'DISABLE', '2019-10-17 14:04:34', NULL),
+(44, 'Kota', 'fa fa-circle', 'master/kota', '1', '42', '', 'ENABLE', '2019-10-17 14:04:48', NULL),
+(45, 'Kasir', 'fa fa-laptop', 'kasir', '1', '0', '', 'ENABLE', '2019-10-18 13:36:55', '2019-10-18 13:40:35'),
+(46, 'Data Transaksi', 'fa fa-archive', 'transaksi', '2', '0', '', 'ENABLE', '2019-10-18 13:37:30', '2019-10-18 13:44:26'),
+(47, 'Pembeli Online', 'fa fa-users', 'onlineuser', '4', '0', '', 'ENABLE', '2019-10-18 13:43:35', NULL);
 
 -- --------------------------------------------------------
 
@@ -840,7 +843,7 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`id`, `role`, `status`, `menu`, `created_at`, `updated_at`) VALUES
-(17, 'Super Admin', 'ENABLE', '[\"17\",\"27\",\"41\",\"39\",\"40\",\"16\",\"42\",\"43\",\"44\",\"24\"]', '2018-10-12 17:03:59', '2019-10-17 14:04:55');
+(17, 'Super Admin', 'ENABLE', '[\"17\",\"45\",\"27\",\"41\",\"39\",\"40\",\"46\",\"47\",\"16\"]', '2018-10-12 17:03:59', '2019-10-18 13:43:47');
 
 -- --------------------------------------------------------
 
@@ -1099,7 +1102,7 @@ ALTER TABLE `logs`
 -- AUTO_INCREMENT for table `menu_master`
 --
 ALTER TABLE `menu_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `m_kategori`
