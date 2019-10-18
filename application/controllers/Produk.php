@@ -47,7 +47,7 @@ class Produk extends MY_Controller
 			foreach ($produk as $row) {
 				$photo = $this->mymodel->selectDataone('file', array('table_id' => $row['idProduk'], 'table' => 'm_produk'));
 				$kategori = $this->mymodel->selectDataone('m_kategori', array('idKategori' => $row['idKategori']));
-				$title = strlen($row["namaProduk"]) > 25 ? substr($row["namaProduk"], 0, 25) . "..." : $row["namaProduk"];
+				$title = strlen($row["namaProduk"]) > 10 ? substr($row["namaProduk"], 0, 10) . "..." : $row["namaProduk"];
 				$rowStock = $this->mymodel->selectWithQuery("SELECT count(idStok) as rowstock from produk_stok WHERE idProduk = ".$row['idProduk']." AND statusStok = 'TERSEDIA' AND status = 'ENABLE'");
 				$output .= '<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="box box-solid round" onclick="view('.$row['idProduk'].')">

@@ -11,7 +11,7 @@
                   <div class="col-md-12 col-sm-12 col-xs-12">
                     <h4>Cari Produk : </h4>
                   </div>
-                  <div class="col-md-6 col-sm-6 col-xs-9">
+                  <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="form-group">
                       <label>Nama Produk</label>
                       <div class="input-group">
@@ -24,7 +24,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-3 col-sm-3 col-xs-3">
+                  <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                       <label>Kategori</label>
                       <select name="kategori" class="form-control" id="filter-kategori">
@@ -39,7 +39,7 @@
                       </select>
                     </div>
                   </div>
-                  <div class="col-md-3 col-sm-3 col-xs-3">
+                  <div class="col-md-3 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label>Cari</label>
                       <button type="submit" class="btn btn-block btn-success" style="buttom:0px">

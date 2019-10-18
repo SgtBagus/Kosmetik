@@ -119,7 +119,7 @@
               <div class="box-body" align="center">
                 <h4 style="margin-top:0px">
                   <b>
-                    <?= strlen($row["namaProduk"]) > 25 ? substr($row["namaProduk"], 0, 25) . "..." : $row["namaProduk"] ?>
+                    <?= strlen($row["namaProduk"]) > 20 ? substr($row["namaProduk"], 0, 20) . "..." : $row["namaProduk"] ?>
                   </b><br>
                   <small><?= $kategori['namaKategori'] ?></small>
                 </h4>
