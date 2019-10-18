@@ -20,7 +20,6 @@ class Mlogin extends CI_Model {
 
   public function userAddProcess($data){
     $query = $this->db->insert('tbl_user', $data);
-
     $last_id = $this->db->insert_id();
     $file = array(
       'name' => 'default.png',
@@ -33,12 +32,9 @@ class Mlogin extends CI_Model {
       'created_at' => date('Y-m-d H:i:s')
     );
     $this->db->insert('file', $file);
-
     $this->mymodel->updateData('tbl_user', array('password' => 'notset-'.$last_id.'_NULL'), array('id' => $last_id));
-
     return $query;
   }
-  
 }  
 
 ?>

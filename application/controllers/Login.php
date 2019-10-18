@@ -21,7 +21,6 @@ class Login extends MY_Controller {
             $this->session->set_userdata('id', $session['id']);
             $this->session->set_userdata('email', $session['email']);
             $this->session->set_userdata('name', $session['name']);
-            $this->session->set_userdata('role', 'Investor');
             echo "success";
             return TRUE;
         } else {
@@ -40,22 +39,21 @@ class Login extends MY_Controller {
             $this->session->set_userdata('id', $session['id']);
             $this->session->set_userdata('email', $session['email']);
             $this->session->set_userdata('name', $session['name']);
-            $this->session->set_userdata('role', 'Investor');
             header("Location:".$this->session->userdata('url_session'));
         }else {
-            $data = array(
+            $dataRegister = array(
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'status' => 'ENABLE',
                 'created_at' => date('Y-m-d H:i:s'), 
             );
-            $check = $this->mlogin->userAddProcess($data);
+            $check = $this->mlogin->userAddProcess($dataRegister);
             if($check){
+                $sessionLogin = $this->mlogin->googleLogin($email);
                 $this->session->set_userdata('session_sop', true);
-                $this->session->set_userdata('id', $session['id']);
-                $this->session->set_userdata('email', $session['email']);
-                $this->session->set_userdata('name', $session['name']);
-                $this->session->set_userdata('role', 'Investor');
+                $this->session->set_userdata('id', $sessionLogin['id']);
+                $this->session->set_userdata('email', $sessionLogin['email']);
+                $this->session->set_userdata('name', $sessionLogin['name']);
                 header("Location:".$this->session->userdata('url_session'));
             }
         }

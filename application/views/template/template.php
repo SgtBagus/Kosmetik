@@ -98,7 +98,7 @@ $this->session->set_userdata(array('url_session' => $actual_link));
                 </li>
                 <li class="dropdown user user-menu">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="<?= $photo['url'] ?>" class="img-circle" alt="User Image" width="25px" height="25px">
+                    <img src="<?= $photo['url'] ?>" class="img-circle" alt="User Image" width="20px" height="20px">
                     <span class="hidden-xs"><?= $userdata['name'] ?></span>
                   </a>
                   <ul class="dropdown-menu">
