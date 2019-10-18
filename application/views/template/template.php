@@ -47,7 +47,7 @@ $this->session->set_userdata(array('url_session' => $actual_link));
           <div class="navbar-header">
             <a href="<?= base_url() ?>" class="navbar-brand">
               <b>
-              STOCKIST
+                STOCKIST
               </b>
             </a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
@@ -90,8 +90,10 @@ $this->session->set_userdata(array('url_session' => $actual_link));
                     <i class="fa fa-shopping-cart"></i>
                     <?php 
                     $rowCart = $this->mymodel->selectWithQuery("SELECT count(id) as rowCart from transaksi_produk WHERE idUser = ".$this->session->userdata('id')." AND statusTransaksi = 'KERANJANG'");
-                    ?>
-                    <span class="label label-danger"><?= $rowCart[0]['rowCart'] ?></span>
+                    if($rowCart[0]['rowCart']){
+                      ?>
+                      <span class="label label-warning"><?= $rowCart[0]['rowCart'] ?></span>
+                    <?php } ?>
                   </a>
                 </li>
                 <li class="dropdown user user-menu">
@@ -217,12 +219,15 @@ $this->session->set_userdata(array('url_session' => $actual_link));
 
   function lazzy_loader(limit) {
     var output = '<div class="row">' +
-      '<div class="col-xs-12" align="center">' +
-      '<h4><i class="fa fa-fw fa-spinner fa-spin"></i> Memuat Data !</h4' +
-      '</div>' +
-      '</div>';
+    '<div class="col-xs-12" align="center">' +
+    '<h4><i class="fa fa-fw fa-spinner fa-spin"></i> Memuat Data !</h4' +
+    '</div>' +
+    '</div>';
     $('#load_data_message').html(output);
   }
+
+  $('[data-mask]').inputmask();
+
   $(function() {
     $('.lazy').lazy({
       placeholder: "data:image/gif;base64,R0lGODlhEALAPQAPzl5uLr9Nrl8e7..."
@@ -242,7 +247,7 @@ $this->session->set_userdata(array('url_session' => $actual_link));
       "searching": true,
       "ordering": true,
       "info": false,
-      "scrollY": true,
+      "scrollX": true,
       "language": {
         "search": "<b> Pencarian : </b>",
         "zeroRecords": function() {
@@ -252,27 +257,6 @@ $this->session->set_userdata(array('url_session' => $actual_link));
           "previous": "Sebelumnya",
           "next": "Selanjutnya"
         }
-      },
-    });
-
-    $('#datatable-history').DataTable({
-      "paging": true,
-      "lengthChange": true,
-      "searching": false,
-      "ordering": true,
-      "info": false,
-      "scrollX": true,
-      "scrollY": true,
-      "language": {
-        "search": "<b> Pencarian : </b>",
-        "zeroRecords": function() {
-          return "<img src='https://icon-library.net/images/no-data-icon/no-data-icon-20.jpg' width='100px' height='100px'><p><b>Tidak Ada Data</b><p>";
-        },
-        "paginate": {
-          "previous": "<i class='fa fa-arrow-left'></i>",
-          "next": "<i class='fa fa-arrow-right'></i>"
-        },
-        "lengthMenu": '<label>Tampilkan <select name="datatable_length" aria-controls="datatable" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> Data</label>'
       },
     });
   });
@@ -299,10 +283,10 @@ $this->session->set_userdata(array('url_session' => $actual_link));
 
   function rupiah(value) {
     var number_string = value.toString(),
-      split = number_string.split(','),
-      sisa = split[0].length % 3,
-      rupiah = split[0].substr(0, sisa),
-      ribuan = split[0].substr(sisa).match(/\d{1,3}/gi);
+    split = number_string.split(','),
+    sisa = split[0].length % 3,
+    rupiah = split[0].substr(0, sisa),
+    ribuan = split[0].substr(sisa).match(/\d{1,3}/gi);
 
     if (ribuan) {
       separator = sisa ? '.' : '';

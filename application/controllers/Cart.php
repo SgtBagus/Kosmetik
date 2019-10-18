@@ -75,12 +75,14 @@ class Cart extends MY_Controller
 			$dt['nama_pengirim'] = $_POST['dt']['nama_pengirim'];
 			$dt['noHubungi'] = $_POST['dt']['noHubungi'];
 			$dt['statusTransaksi'] = 'WAITING_PAYMENT';
+			$dt['transaksiDibuat'] = date('Y-m-d H:i:s');
+			$dt['transaksiEXP'] = date('Y-m-d H:i:s', time() + 86400);
 			$dt['status'] = 'ENABLE';
 			$dt['created_at'] = date('Y-m-d H:i:s');
 			$this->db->insert('transaksi', $dt);
 
 			$this->alert->alertsuccess('Permintaan pembelian Telah Dikirim dan menunggu untuk melakukan Pembayaran <br> Cek Proses Pembelian di <a href="'.base_url('profil/buys').'"> Profil</a>');
-			echo '<script type="text/javascript" language="Javascript">window.open("'.base_url('invoice/payment/').$dt['code'].'");</script>';
+			echo '<script type="text/javascript" language="Javascript">window.open("'.base_url('invoice/payment/').$kode.'");</script>';
 		}
 	}
 }

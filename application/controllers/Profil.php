@@ -12,8 +12,30 @@ class Profil extends MY_Controller
 		$data['user'] = $this->mymodel->selectDataOne('tbl_user',  array('id' => $this->session->userdata('id')));
 		$data['file'] = $this->mymodel->selectDataOne('file',  array('table_id' => $this->session->userdata('id'), 'table' => 'tbl_user'));
 
+		$data['trans'] = $this->mymodel->selectWhere('transaksi', array('idUser' => $this->session->userdata('id'), 'statusTransaksi' => 'APPROVE'));
 		$data['title'] = "Profil";
 		$data['content'] = "profil";
+		$this->template->load('template/template', 'profil/index', $data);
+	}
+
+	public function trans()
+	{
+		$checkstatus = $this->mymodel->selectWhere('transaksi', array('idUser' => $this->session->userdata('id'), 'statusTransaksi' => 'WAITING_PAYMENT'));
+
+		foreach ($checkstatus as $row) {
+			if($row['transaksiEXP'] <= date("Y-m-d H:i:s")){
+				$dt['statusTransaksi'] = 'EXPIRED';
+				$this->mymodel->updateData('transaksi', $dt, array('idTransaksi' => $row['id']));
+			}
+		}
+
+		$data['user'] = $this->mymodel->selectDataOne('tbl_user',  array('id' => $this->session->userdata('id')));
+		$data['file'] = $this->mymodel->selectDataOne('file',  array('table_id' => $this->session->userdata('id'), 'table' => 'tbl_user'));
+
+		$data['trans'] = $this->mymodel->selectWhere('transaksi', array('idUser' => $this->session->userdata('id')));
+
+		$data['title'] = "Transaksi";
+		$data['content'] = "trans";
 		$this->template->load('template/template', 'profil/index', $data);
 	}
 
@@ -26,14 +48,6 @@ class Profil extends MY_Controller
 		$data['content'] = "account";
 		$this->template->load('template/template', 'profil/index', $data);
 	}
-
-	public function alamat()
-	{
-		$data['title'] = "Alamat";
-		$data['content'] = "address";
-		$this->template->load('template/template', 'profil/index', $data);
-	}
-
 
 	public function vali_akun()
 	{

@@ -40,6 +40,11 @@ if ($this->session->userdata('session_sop') == "") {
                                                 <i class="fa fa-dashboard"></i> Profil
                                             </li>
                                         </a>
+                                        <a href="<?= base_url('profil/trans') ?>">
+                                            <li class="list-group-item a_black" style="margin-bottom: 5px;" id="trans">
+                                                <i class="fa fa-list"></i> Transaksi
+                                            </li>
+                                        </a>
                                         <a href="<?= base_url('profil/account') ?>">
                                             <li class="list-group-item a_black" style="margin-bottom: 5px;" id="account">
                                                 <i class="fa fa-user-circle"></i> Akun Saya
@@ -53,13 +58,14 @@ if ($this->session->userdata('session_sop') == "") {
                     </div>
                 </div>
                 <div class="col-md-9 col-sm-6 col-xs-12">
-                    <?= $alert ?>
                     <?php
                     $data['user'] = $user;
                     $data['file'] = $file;
 
                     if ($content == 'profil') {
                         $this->load->view('profil/profil');
+                    } else if ($content == 'trans') {
+                        $this->load->view('profil/trans', $trans);
                     } else if ($content == 'account') {
                         $this->load->view('profil/account');
                     } else {
@@ -75,6 +81,8 @@ if ($this->session->userdata('session_sop') == "") {
     $(document).ready(function() {
         if ('<?= $content ?>' == 'profil') {
             $("#profil").addClass("active");
+        } else if ('<?= $content ?>' == 'trans') {
+            $("#trans").addClass("active");
         } else if ('<?= $content ?>' == 'account') {
             $("#account").addClass("active");
         }

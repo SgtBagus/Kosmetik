@@ -5,7 +5,7 @@
                 <div class="box box-solid round" >
                     <div class="box-body">
                         <div class="row" align="center">
-                            <h3><b>Transaksi Berhasil</b></h3>
+                            <h3><b>Data Transaksi</b></h3>
                         </div>
                         <table id="datatable" class="table table-bordered table-striped" style="width:100%">
                             <thead>
