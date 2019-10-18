@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2019 at 09:13 AM
+-- Generation Time: Oct 18, 2019 at 02:27 AM
 -- Server version: 10.1.39-MariaDB
 -- PHP Version: 7.3.5
 
@@ -884,10 +884,18 @@ CREATE TABLE `transaksi` (
   `nama_pengirim` varchar(255) NOT NULL,
   `noHubungi` varchar(225) DEFAULT NULL,
   `statusTransaksi` varchar(255) NOT NULL,
+  `catatan` text,
   `status` enum('ENABLE','DISABLE') NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`idTransaksi`, `idUser`, `idAdmin`, `kodeTransaksi`, `totalTransaksi`, `totalBeliProduk`, `jumlahBarang`, `alamatKirim`, `nama_pengirim`, `noHubungi`, `statusTransaksi`, `catatan`, `status`, `created_at`, `updated_at`) VALUES
+(1, 2, NULL, 'STO-X4ON4X440V', 212000, 2, 2, 'Perum Bumi Asri J-15 Tahap 2', 'Bagus Andika', '1239871298232', 'WAITING_PAYMENT', NULL, 'ENABLE', '2019-10-17 15:20:10', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -915,8 +923,8 @@ CREATE TABLE `transaksi_produk` (
 --
 
 INSERT INTO `transaksi_produk` (`id`, `kodeKeranjang`, `idUser`, `idAdmin`, `idProduk`, `jumlahProduk`, `hargaProduk`, `totalHarga`, `statusTransaksi`, `status`, `created_at`, `updated_at`) VALUES
-(4, NULL, 2, NULL, 5, 1, 167000, 167000, 'KERANJANG', 'ENABLE', '2019-10-17 12:07:12', '0000-00-00 00:00:00'),
-(7, NULL, 2, NULL, 6, 1, 45000, 45000, 'KERANJANG', 'ENABLE', '2019-10-17 13:46:45', '0000-00-00 00:00:00');
+(4, 'STO-X4ON4X440V', 2, NULL, 5, 1, 167000, 167000, 'WAITING_PAYMENT', 'ENABLE', '2019-10-17 12:07:12', '2019-10-17 15:20:10'),
+(7, 'STO-X4ON4X440V', 2, NULL, 6, 1, 45000, 45000, 'WAITING_PAYMENT', 'ENABLE', '2019-10-17 13:46:45', '2019-10-17 15:20:10');
 
 -- --------------------------------------------------------
 
@@ -1131,7 +1139,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `idTransaksi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idTransaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `transaksi_produk`
