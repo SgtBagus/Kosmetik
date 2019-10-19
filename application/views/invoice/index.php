@@ -1,8 +1,6 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script type="text/javascript"
-src="https://app.sandbox.midtrans.com/snap/snap.js"
-data-client-key="SB-Mid-client-BwKVZAEn_uaPXdIe"></script>
-<form id="payment-form" method="post" action="<?=site_url()?>/snap/finish">
+<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-BwKVZAEn_uaPXdIe"></script>
+<form id="payment-form" method="post" action="<?= site_url() ?>/snap/finish">
   <input type="hidden" name="result_type" id="result-type" value=""></div>
   <input type="hidden" name="result_data" id="result-data" value=""></div>
 </form>
@@ -15,22 +13,26 @@ data-client-key="SB-Mid-client-BwKVZAEn_uaPXdIe"></script>
       </div>
       <br>
       <div class="row">
-        <div class="col-md-3 col-sm-3 col-xs-12" style="margin-top: 15px"> 
+        <div class="col-md-3 col-sm-3 col-xs-12" style="margin-top: 15px">
           <div class="row">
             <div class="col-md-12">
               <div class="box box-solid round">
                 <div class="box-header with-border">
-                  <h3 class="box-title pull-left">Sisa Waktu</h3> 
+                  <h3 class="box-title pull-left">Sisa Waktu</h3>
                   <h3 class="box-title pull-right">
-                    <?php if($invoice['statusTransaksi'] == "APPROVE") { ?>
+                    <?php if ($invoice['statusTransaksi'] == "APPROVE") { ?>
                       <span type="button" class="btn-primary btn-sm round">
                         <i class="fa fa-check"></i> Di Terima
                       </span>
-                    <?php }else if($invoice['statusTransaksi'] == "REJECT") { ?>
+                    <?php } else if ($invoice['statusTransaksi'] == "REJECT") { ?>
                       <span type="button" class="btn-danger btn-sm round">
-                        <i class="fa fa-check"></i> Sudah Tidak ada
+                        <i class="fa fa-ban"></i> Sudah Tidak ada
                       </span>
-                    <?php }else { ?>
+                    <?php } else if ($invoice['statusTransaksi'] == "EXPIRED") { ?>
+                      <span type="button" class="btn-danger btn-sm round">
+                        <i class="fa fa-ban"></i> Kadarluasa
+                      </span>
+                    <?php } else { ?>
                       <span type="button" class="btn-success btn-sm round">
                         <i class="fa fa-check"></i> Masih Ada
                       </span>
@@ -38,11 +40,11 @@ data-client-key="SB-Mid-client-BwKVZAEn_uaPXdIe"></script>
                   </h3>
                 </div>
                 <div class="box-body" align="center">
-                  <?php if($invoice['statusTransaksi'] == "APPROVE") { ?>
+                  <?php if ($invoice['statusTransaksi'] == "APPROVE") { ?>
                     <h1><b>DITERIMA</b></h1>
-                  <?php }else if($invoice['statusTransaksi'] == "REJECT") { ?>
+                  <?php } else if ($invoice['statusTransaksi'] == "REJECT") { ?>
                     <h1><b>DITOLAK</b></h1>
-                  <?php }else { ?>
+                  <?php } else { ?>
                     <h1><b id="countDownKadarluasa">00 : 00 : 00</b></h1>
                   <?php } ?>
                 </div>
@@ -56,13 +58,13 @@ data-client-key="SB-Mid-client-BwKVZAEn_uaPXdIe"></script>
                   <h3 class="box-title pull-left">Total Harga</h3>
                 </div>
                 <div class="box-body" align="center">
-                  <h1><b>Rp <?= number_format($invoice['totalTransaksi'],0,',','.'); ?>,-</b></h1>
+                  <h1><b>Rp <?= number_format($invoice['totalTransaksi'], 0, ',', '.'); ?>,-</b></h1>
                 </div>
               </div>
             </div>
           </div>
-          <a href="#" target="_blank"> 
-            <button  type="button" class="btn btn-success btn-block btn-lg round">
+          <a href="#" target="_blank">
+            <button type="button" class="btn btn-success btn-block btn-lg round">
               <i class="fa fa-whatsapp"></i> Konfirmasi Lewat WA
             </button>
           </a>
@@ -99,11 +101,11 @@ data-client-key="SB-Mid-client-BwKVZAEn_uaPXdIe"></script>
                     </tr>
                     <tr>
                       <th>Tanggal Mengajukan Pembayaran</th>
-                      <td><?=date('Y-m-d H:i:s', strtotime($invoice['transaksiDibuat']))?></td>
+                      <td><?= date('Y-m-d H:i:s', strtotime($invoice['transaksiDibuat'])) ?></td>
                     </tr>
                     <tr>
                       <th>Tanggal Kadarluasa</th>
-                      <td><?=date('Y-m-d H:i:s', strtotime($invoice['transaksiEXP']))?></td>
+                      <td><?= date('Y-m-d H:i:s', strtotime($invoice['transaksiEXP'])) ?></td>
                     </tr>
                     <tr>
                       <th>Total Produk Dibeli</th>
@@ -119,12 +121,12 @@ data-client-key="SB-Mid-client-BwKVZAEn_uaPXdIe"></script>
             </div>
           </div>
         </div>
-        <div class="col-md-3 col-sm-3 col-xs-12" style="margin-top: 15px"> 
+        <div class="col-md-3 col-sm-3 col-xs-12" style="margin-top: 15px">
           <div class="row">
             <div class="col-md-12">
               <div class="box box-solid round">
                 <div class="box-header with-border">
-                  <h3 class="box-title pull-left">Detail Pengirim</h3> 
+                  <h3 class="box-title pull-left">Detail Pengirim</h3>
                 </div>
                 <div class="box-body">
                   <div class="form-group">
@@ -145,14 +147,13 @@ data-client-key="SB-Mid-client-BwKVZAEn_uaPXdIe"></script>
           </div>
         </div>
       </div>
-
       <div class="row">
         <div class="col-md-9 col-sm-9 col-xs-12" style="margin-top: 15px">
           <div class="row">
             <div class="col-md-12">
               <div class="box box-solid round">
                 <div class="box-header with-border">
-                  <h3 class="box-title pull-left">Detail Produk</h3> 
+                  <h3 class="box-title pull-left">Detail Produk</h3>
                 </div>
                 <div class="box-body">
                   <div class="table-responsive">
@@ -167,7 +168,7 @@ data-client-key="SB-Mid-client-BwKVZAEn_uaPXdIe"></script>
                         </tr>
                       </thead>
                       <tbody>
-                        <?php 
+                        <?php
                         $i = 0;
                         foreach ($invoice_produk as $row) {
                           $photo = $this->mymodel->selectDataone('file', array('table_id' => $row['idProduk'], 'table' => 'm_produk'));
@@ -182,131 +183,149 @@ data-client-key="SB-Mid-client-BwKVZAEn_uaPXdIe"></script>
                               <input type="hidden" name="dtd[<?= $i ?>][id]" value="<?= $row['id'] ?>">
                             </td>
                             <td>
-                              <h4><a href="<?=base_url('produk?name=').$produk['namaProduk']?>" target="_blank"><?= $produk['namaProduk'] ?></a></h4>
+                              <h4><a href="<?= base_url('produk?name=') . $produk['namaProduk'] ?>" target="_blank"><?= $produk['namaProduk'] ?></a></h4>
                               <span class="text-muted font-weight-normal font-italic d-block">Kategori: <?= $kategori['namaKategori'] ?>
-                              <br><small><?= $desk ?></small>
-                            </span>
-                          </td>
-                          <td align="center">
-                            <b><?= $row['jumlahProduk'] ?></b>
-                          </td>
-                          <td>
-                            <b>
-                              Rp <?= number_format($produk['hargajProduk'], 0, ',', '.') ?>
-                            </b>
-                          </td>
-                          <td>
-                            <b id="totalharga-<?= $row['id'] ?>">
-                              Rp <?= number_format($row['totalHarga'], 0, ',', '.') ?>
-                            </b>
-                          </td>
-                        </tr>
-                        <?php $i++; } ?>
+                                <br><small><?= $desk ?></small>
+                              </span>
+                            </td>
+                            <td align="center">
+                              <b><?= $row['jumlahProduk'] ?></b>
+                            </td>
+                            <td>
+                              <b>
+                                Rp <?= number_format($produk['hargajProduk'], 0, ',', '.') ?>
+                              </b>
+                            </td>
+                            <td>
+                              <b id="totalharga-<?= $row['id'] ?>">
+                                Rp <?= number_format($row['totalHarga'], 0, ',', '.') ?>
+                              </b>
+                            </td>
+                          </tr>
+                        <?php $i++;
+                        } ?>
                       </tbody>
                       <tfoot>
                         <tr>
                           <td align="right" colspan="2">Produk</td>
-                          <td align="center"><b><?=  $invoice['jumlahBarang']?></b></th>
-                            <td align="right">Subtotal</td>
-                            <td align="center"><b>Rp <?= number_format($invoice['totalTransaksi'], 0, ',', '.') ?></b></th>
-                            </tr>
-                          </tfoot>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-12" style="margin-top: 15px">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="box box-solid round">
-                    <div class="box-header with-border">
-                      <h3 class="box-title pull-left">Tambahan Catatan</h3> 
-                    </div>
-                    <div class="box-body">
-                      <p><?= $invoice['catatan'] ?></p>
-                    </div>
+                          <td align="center"><b><?= $invoice['jumlahBarang'] ?></b></th>
+                          <td align="right">Subtotal</td>
+                          <td align="center"><b>Rp <?= number_format($invoice['totalTransaksi'], 0, ',', '.') ?></b></th>
+                        </tr>
+                      </tfoot>
+                    </table>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12" style="margin-top: 15px">
+          <?php if ($file_tranksaksi) { ?>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box box-solid round">
+                  <div class="box-header with-border">
+                    <h3 class="box-title pull-left">Bukti Pembayaran</h3>
+                    <br>
+                    <img src="<?= $file_tranksaksi['url'] ?>" width="100%" height="100px" id="preview_image">
+                    <br><br>
+                    <div align="center">
+                      <a href="<?= $file_tranksaksi['url'] ?>" target="_blank">
+                        <button type="button" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat Gambar</button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php } ?>
           <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-12" style="margin-top: 15px">
-              <button type="button" class="btn btn-block btn-primary btn-lg round" align="center">
-                <i class="fa fa-credit-card"></i> Bayar Sekarang
-              </button>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-12" style="margin-top: 15px">
-              <a  href="https://api.whatsapp.com/send?phone=6281995020895?>&text=Halo Admin AGNOV. Perkenalkan Saya <?=$investor['name']?>. Saya ingin melakukan konfirmasi pembayaran donasi dengan link <?=base_url()?>invoice/payment/<?=$invoice['code']?>. Berikut saya sertakan bukti pembayarannya. Terimakasih..." target="_blank"> 
-                <button  type="button" class="btn btn-success btn-block btn-lg round">
-                  <i class="fa fa-whatsapp"></i> Konfirmasi Lewat WA
-                </button>
-              </a>
+            <div class="col-md-12">
+              <div class="box box-solid round">
+                <div class="box-header with-border">
+                  <h3 class="box-title pull-left">Tambahan Catatan</h3>
+                </div>
+                <div class="box-body">
+                  <p><?= $invoice['catatan'] ?></p>
+                </div>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12" style="margin-top: 15px">
+          <button type="button" class="btn btn-block btn-primary btn-lg round" align="center">
+            <i class="fa fa-credit-card"></i> Bayar Sekarang
+          </button>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12" style="margin-top: 15px">
+          <a href="https://api.whatsapp.com/send?phone=6281995020895?>&text=Halo Admin AGNOV. Perkenalkan Saya <?= $investor['name'] ?>. Saya ingin melakukan konfirmasi pembayaran donasi dengan link <?= base_url() ?>invoice/payment/<?= $invoice['code'] ?>. Berikut saya sertakan bukti pembayarannya. Terimakasih..." target="_blank">
+            <button type="button" class="btn btn-success btn-block btn-lg round">
+              <i class="fa fa-whatsapp"></i> Konfirmasi Lewat WA
+            </button>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
 
 
-    <script type="text/javascript">
+<script type="text/javascript">
+  $('#pay-button').click(function(event) {
+    event.preventDefault();
+    $(this).attr("disabled", "disabled");
 
-      $('#pay-button').click(function (event) {
-        event.preventDefault();
-        $(this).attr("disabled", "disabled");
+    $.ajax({
+      url: '<?= base_url() ?>Snap/token?code=<?= $this->uri->segment(2) ?>',
+      cache: false,
 
-        $.ajax({
-          url: '<?=base_url()?>Snap/token?code=<?=$this->uri->segment(2)?>',
-          cache: false,
+      success: function(data) {
+        //location = data;
 
-          success: function(data) {
-      //location = data;
+        console.log('token = ' + data);
 
-      console.log('token = '+data);
-      
-      var resultType = document.getElementById('result-type');
-      var resultData = document.getElementById('result-data');
+        var resultType = document.getElementById('result-type');
+        var resultData = document.getElementById('result-data');
 
-      function changeResult(type,data){
-        $("#result-type").val(type);
-        $("#result-data").val(JSON.stringify(data));
-      }
-
-      snap.pay(data, {
-
-        onSuccess: function(result){
-          changeResult('success', result);
-          console.log(result.status_message);
-          console.log(result);
-          $("#payment-form").submit();
-        },
-        onPending: function(result){
-          changeResult('pending', result);
-          console.log(result.status_message);
-          $("#payment-form").submit();
-        },
-        onError: function(result){
-          changeResult('error', result);
-          console.log(result.status_message);
-          $("#payment-form").submit();
+        function changeResult(type, data) {
+          $("#result-type").val(type);
+          $("#result-data").val(JSON.stringify(data));
         }
-      });
-    }
+
+        snap.pay(data, {
+
+          onSuccess: function(result) {
+            changeResult('success', result);
+            console.log(result.status_message);
+            console.log(result);
+            $("#payment-form").submit();
+          },
+          onPending: function(result) {
+            changeResult('pending', result);
+            console.log(result.status_message);
+            $("#payment-form").submit();
+          },
+          onError: function(result) {
+            changeResult('error', result);
+            console.log(result.status_message);
+            $("#payment-form").submit();
+          }
+        });
+      }
+    });
   });
-      });
+</script>
 
-    </script>
-
-    <script>
+<script>
   // Set the date we're counting down to
-  var countDownDate = new Date("<?=$invoice['transaksiEXP']?>").getTime();
+  var countDownDate = new Date("<?= $invoice['transaksiEXP'] ?>").getTime();
   //alert(countDownDate);2018-09-07 16:29:17
   //alert("2018-09-07 16:29:17");
   // Update the count down every 1 second
-  var x = setInterval(function () {
+  var x = setInterval(function() {
 
     // Get todays date and time
     var now = new Date().getTime();
@@ -320,7 +339,7 @@ data-client-key="SB-Mid-client-BwKVZAEn_uaPXdIe"></script>
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     // Output the result in an element with id="demo"
-    document.getElementById("countDownKadarluasa").innerHTML = hours + " : " +minutes + " : " + seconds;
+    document.getElementById("countDownKadarluasa").innerHTML = hours + " : " + minutes + " : " + seconds;
 
     // If the count down is over, write some text
     if (distance < 0) {
@@ -331,7 +350,7 @@ data-client-key="SB-Mid-client-BwKVZAEn_uaPXdIe"></script>
 </script>
 
 <script>
-  $('#cetak').click(function(){
-   window.print();
- });
+  $('#cetak').click(function() {
+    window.print();
+  });
 </script>

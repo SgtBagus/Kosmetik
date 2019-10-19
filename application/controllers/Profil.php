@@ -25,10 +25,9 @@ class Profil extends MY_Controller
 		foreach ($checkstatus as $row) {
 			if($row['transaksiEXP'] <= date("Y-m-d H:i:s")){
 				$dt['statusTransaksi'] = 'EXPIRED';
-				$this->mymodel->updateData('transaksi', $dt, array('idTransaksi' => $row['id']));
+				$this->mymodel->updateData('transaksi', $dt, array('idTransaksi' => $row['idTransaksi']));
 			}
 		}
-
 		$data['user'] = $this->mymodel->selectDataOne('tbl_user',  array('id' => $this->session->userdata('id')));
 		$data['file'] = $this->mymodel->selectDataOne('file',  array('table_id' => $this->session->userdata('id'), 'table' => 'tbl_user'));
 

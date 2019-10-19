@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Oct 18, 2019 at 09:21 AM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.6
+-- Host: 127.0.0.1
+-- Generation Time: Oct 19, 2019 at 10:15 AM
+-- Server version: 10.1.39-MariaDB
+-- PHP Version: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -338,8 +338,8 @@ INSERT INTO `access_control` (`id`, `folder`, `class`, `method`, `val`) VALUES
 CREATE TABLE `activity` (
   `ip` varchar(255) DEFAULT NULL,
   `link` varchar(255) DEFAULT NULL,
-  `get` longtext DEFAULT NULL,
-  `post` longtext DEFAULT NULL,
+  `get` longtext,
+  `post` longtext,
   `user_id` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -413,7 +413,7 @@ CREATE TABLE `file` (
   `name` varchar(255) DEFAULT NULL,
   `mime` varchar(255) DEFAULT NULL,
   `dir` varchar(255) DEFAULT NULL,
-  `url` text DEFAULT NULL,
+  `url` text,
   `table` varchar(255) DEFAULT NULL,
   `table_id` int(11) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
@@ -426,19 +426,20 @@ CREATE TABLE `file` (
 --
 
 INSERT INTO `file` (`id`, `name`, `mime`, `dir`, `url`, `table`, `table_id`, `status`, `created_at`, `updated_at`) VALUES
-(24, '6950c16c9bcc6995f376b297f163175929730.png', 'image/png', 'webfile/users/6950c16c9bcc6995f376b297f163175929730.png', 'http://192.168.1.13:8080/webfile/users/6950c16c9bcc6995f376b297f163175929730.png', 'user', 23, 'ENABLE', '2019-10-15 00:00:00', '2019-10-15 00:00:00'),
-(25, '6950c16c9bcc6995f376b297f163175940871.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f163175940871.jpg', 'http://192.168.1.13:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175940871.jpg', 'm_kategori', 15, 'ENABLE', '2019-10-15 15:20:35', NULL),
-(26, '6950c16c9bcc6995f376b297f163175960100.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f163175960100.jpg', 'http://192.168.1.13:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175960100.jpg', 'm_kategori', 16, 'ENABLE', '2019-10-15 15:21:43', NULL),
-(27, '6950c16c9bcc6995f376b297f163175958213.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f163175958213.jpg', 'http://192.168.1.13:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175958213.jpg', 'm_kategori', 17, 'ENABLE', '2019-10-15 15:22:22', NULL),
-(28, '6950c16c9bcc6995f376b297f16317596787.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f16317596787.jpg', 'http://192.168.1.13:8080/webfile/kategori/6950c16c9bcc6995f376b297f16317596787.jpg', 'm_kategori', 18, 'ENABLE', '2019-10-15 15:22:44', NULL),
-(29, '6950c16c9bcc6995f376b297f163175963830.png', 'image/png', 'webfile/kategori/6950c16c9bcc6995f376b297f163175963830.png', 'http://192.168.1.13:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175963830.png', 'm_kategori', 19, 'ENABLE', '2019-10-15 15:23:04', NULL),
-(30, '6950c16c9bcc6995f376b297f16317598736.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f16317598736.jpg', 'http://192.168.1.13:8080/webfile/kategori/6950c16c9bcc6995f376b297f16317598736.jpg', 'm_kategori', 20, 'ENABLE', '2019-10-15 15:23:23', NULL),
-(31, '6950c16c9bcc6995f376b297f163175978084.png', 'image/png', 'webfile/kategori/6950c16c9bcc6995f376b297f163175978084.png', 'http://192.168.1.13:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175978084.png', 'm_kategori', 21, 'ENABLE', '2019-10-15 15:23:45', NULL),
-(32, '6950c16c9bcc6995f376b297f163175956371.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f163175956371.jpg', 'http://192.168.1.13:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175956371.jpg', 'm_kategori', 22, 'ENABLE', '2019-10-15 15:24:09', NULL),
-(33, '6950c16c9bcc6995f376b297f163175933626.jpg', 'image/jpeg', 'webfile/produk/6950c16c9bcc6995f376b297f163175933626.jpg', 'http://192.168.1.13:8080/webfile/produk/6950c16c9bcc6995f376b297f163175933626.jpg', 'm_produk', 4, 'ENABLE', '2019-10-15 15:25:34', NULL),
-(34, '6950c16c9bcc6995f376b297f163175948216.jpg', 'image/jpeg', 'webfile/produk/6950c16c9bcc6995f376b297f163175948216.jpg', 'http://192.168.1.13:8080/webfile/produk/6950c16c9bcc6995f376b297f163175948216.jpg', 'm_produk', 5, 'ENABLE', '2019-10-15 15:26:28', NULL),
-(35, '6950c16c9bcc6995f376b297f163175975949.jpg', 'image/jpeg', 'webfile/produk/6950c16c9bcc6995f376b297f163175975949.jpg', 'http://192.168.1.13:8080/webfile/produk/6950c16c9bcc6995f376b297f163175975949.jpg', 'm_produk', 6, 'ENABLE', '2019-10-15 15:26:55', NULL),
-(36, 'default.png', 'image/png', 'webfile/user/default.png', 'http://192.168.1.13:8000/webfile/user/default.png', 'tbl_user', 2, 'ENABLE', '2019-10-16 00:00:00', NULL);
+(24, '6950c16c9bcc6995f376b297f163175929730.png', 'image/png', 'webfile/users/6950c16c9bcc6995f376b297f163175929730.png', 'http://192.168.100.9:8080/webfile/users/6950c16c9bcc6995f376b297f163175929730.png', 'user', 23, 'ENABLE', '2019-10-15 00:00:00', '2019-10-15 00:00:00'),
+(25, '6950c16c9bcc6995f376b297f163175940871.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f163175940871.jpg', 'http://192.168.100.9:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175940871.jpg', 'm_kategori', 15, 'ENABLE', '2019-10-15 15:20:35', NULL),
+(26, '6950c16c9bcc6995f376b297f163175960100.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f163175960100.jpg', 'http://192.168.100.9:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175960100.jpg', 'm_kategori', 16, 'ENABLE', '2019-10-15 15:21:43', NULL),
+(27, '6950c16c9bcc6995f376b297f163175958213.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f163175958213.jpg', 'http://192.168.100.9:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175958213.jpg', 'm_kategori', 17, 'ENABLE', '2019-10-15 15:22:22', NULL),
+(28, '6950c16c9bcc6995f376b297f16317596787.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f16317596787.jpg', 'http://192.168.100.9:8080/webfile/kategori/6950c16c9bcc6995f376b297f16317596787.jpg', 'm_kategori', 18, 'ENABLE', '2019-10-15 15:22:44', NULL),
+(29, '6950c16c9bcc6995f376b297f163175963830.png', 'image/png', 'webfile/kategori/6950c16c9bcc6995f376b297f163175963830.png', 'http://192.168.100.9:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175963830.png', 'm_kategori', 19, 'ENABLE', '2019-10-15 15:23:04', NULL),
+(30, '6950c16c9bcc6995f376b297f16317598736.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f16317598736.jpg', 'http://192.168.100.9:8080/webfile/kategori/6950c16c9bcc6995f376b297f16317598736.jpg', 'm_kategori', 20, 'ENABLE', '2019-10-15 15:23:23', NULL),
+(31, '6950c16c9bcc6995f376b297f163175978084.png', 'image/png', 'webfile/kategori/6950c16c9bcc6995f376b297f163175978084.png', 'http://192.168.100.9:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175978084.png', 'm_kategori', 21, 'ENABLE', '2019-10-15 15:23:45', NULL),
+(32, '6950c16c9bcc6995f376b297f163175956371.jpg', 'image/jpeg', 'webfile/kategori/6950c16c9bcc6995f376b297f163175956371.jpg', 'http://192.168.100.9:8080/webfile/kategori/6950c16c9bcc6995f376b297f163175956371.jpg', 'm_kategori', 22, 'ENABLE', '2019-10-15 15:24:09', NULL),
+(33, '6950c16c9bcc6995f376b297f163175933626.jpg', 'image/jpeg', 'webfile/produk/6950c16c9bcc6995f376b297f163175933626.jpg', 'http://192.168.100.9:8080/webfile/produk/6950c16c9bcc6995f376b297f163175933626.jpg', 'm_produk', 4, 'ENABLE', '2019-10-15 15:25:34', NULL),
+(34, '6950c16c9bcc6995f376b297f163175948216.jpg', 'image/jpeg', 'webfile/produk/6950c16c9bcc6995f376b297f163175948216.jpg', 'http://192.168.100.9:8080/webfile/produk/6950c16c9bcc6995f376b297f163175948216.jpg', 'm_produk', 5, 'ENABLE', '2019-10-15 15:26:28', NULL),
+(35, '6950c16c9bcc6995f376b297f163175975949.jpg', 'image/jpeg', 'webfile/produk/6950c16c9bcc6995f376b297f163175975949.jpg', 'http://192.168.100.9:8080/webfile/produk/6950c16c9bcc6995f376b297f163175975949.jpg', 'm_produk', 6, 'ENABLE', '2019-10-15 15:26:55', NULL),
+(36, 'default.png', 'image/png', 'webfile/user/default.png', 'http://192.168.100.9:8000/webfile/user/default.png', 'tbl_user', 2, 'ENABLE', '2019-10-16 00:00:00', NULL),
+(39, '6950c16c9bcc6995f376b297f163175919623.PNG', 'image/png', 'webfile/bukti/6950c16c9bcc6995f376b297f163175919623.PNG', 'http://192.168.100.9:8080/webfile/bukti/6950c16c9bcc6995f376b297f163175919623.PNG', 'bukti_pembayaran', 1, 'ENABLE', '2019-10-19 14:28:09', '2019-10-19 14:28:09');
 
 -- --------------------------------------------------------
 
@@ -476,7 +477,7 @@ INSERT INTO `keys` (`id`, `user_id`, `key`, `level`, `ignore_limits`, `is_privat
 CREATE TABLE `konfig` (
   `id` int(11) NOT NULL,
   `slug` varchar(255) DEFAULT NULL,
-  `value` text DEFAULT NULL,
+  `value` text,
   `status` enum('ENABLE','DISABLE') DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
@@ -512,13 +513,13 @@ CREATE TABLE `logs` (
   `id` int(11) NOT NULL,
   `uri` varchar(255) NOT NULL,
   `method` varchar(6) NOT NULL,
-  `params` text DEFAULT NULL,
+  `params` text,
   `api_key` varchar(40) NOT NULL,
   `ip_address` varchar(45) NOT NULL,
   `time` int(11) NOT NULL,
   `rtime` float DEFAULT NULL,
   `authorized` varchar(1) NOT NULL,
-  `response_code` smallint(3) DEFAULT 0
+  `response_code` smallint(3) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -738,7 +739,7 @@ CREATE TABLE `m_produk` (
   `idProduk` int(11) NOT NULL,
   `idCreator` int(11) NOT NULL,
   `namaProduk` varchar(255) NOT NULL,
-  `deskProduk` text DEFAULT NULL,
+  `deskProduk` text,
   `hargabProduk` double NOT NULL,
   `hargajProduk` double NOT NULL,
   `idKategori` int(11) NOT NULL,
@@ -779,9 +780,9 @@ CREATE TABLE `produk_stok` (
 
 INSERT INTO `produk_stok` (`idStok`, `idCreator`, `idProduk`, `kodeBarang`, `statusStok`, `status`, `created_at`, `updated_at`) VALUES
 (1, 23, 4, '129387120232', 'TERSEDIA', 'ENABLE', '2019-10-17 09:38:53', '0000-00-00 00:00:00'),
-(2, 23, 5, '129387120235', 'TERSEDIA', 'ENABLE', '2019-10-17 09:39:16', '2019-10-17 10:29:27'),
+(2, 23, 5, '129387120235', 'TERSEDIA', 'ENABLE', '2019-10-17 09:39:16', '2019-10-19 12:51:45'),
 (3, 23, 5, '129387123235', 'TERSEDIA', 'DISABLE', '2019-10-17 09:39:22', '2019-10-17 10:29:40'),
-(4, 23, 6, '123347123235', 'TERSEDIA', 'ENABLE', '2019-10-17 09:39:29', '2019-10-17 10:29:50'),
+(4, 23, 6, '123347123235', 'TERSEDIA', 'ENABLE', '2019-10-17 09:39:29', '2019-10-19 12:51:45'),
 (5, 23, 4, '312312343sf12', 'TERSEDIA', 'ENABLE', '2019-10-17 09:39:37', '2019-10-17 10:29:56'),
 (6, 23, 5, '12312312323', 'TERSEDIA', 'ENABLE', '2019-10-17 12:54:13', '0000-00-00 00:00:00'),
 (7, 23, 5, '123123123412323', 'TERSEDIA', 'ENABLE', '2019-10-17 13:03:56', '0000-00-00 00:00:00'),
@@ -796,8 +797,8 @@ INSERT INTO `produk_stok` (`idStok`, `idCreator`, `idProduk`, `kodeBarang`, `sta
 CREATE TABLE `report` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `query` longtext DEFAULT NULL,
-  `header` text DEFAULT NULL,
+  `query` longtext,
+  `header` text,
   `status` enum('ENABLE','DISABLE') DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
@@ -833,7 +834,7 @@ CREATE TABLE `role` (
   `id` int(11) NOT NULL,
   `role` varchar(255) DEFAULT NULL,
   `status` enum('DISABLE','ENABLE') DEFAULT NULL,
-  `menu` text DEFAULT NULL,
+  `menu` text,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -887,7 +888,7 @@ CREATE TABLE `transaksi` (
   `nama_pengirim` varchar(255) NOT NULL,
   `noHubungi` varchar(225) DEFAULT NULL,
   `statusTransaksi` varchar(255) NOT NULL,
-  `catatan` text DEFAULT NULL,
+  `catatan` text,
   `transaksiDibuat` datetime DEFAULT NULL,
   `transaksiEXP` datetime DEFAULT NULL,
   `status` enum('ENABLE','DISABLE') NOT NULL,
@@ -900,7 +901,7 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`idTransaksi`, `idUser`, `idAdmin`, `kodeTransaksi`, `totalTransaksi`, `totalBeliProduk`, `jumlahBarang`, `alamatKirim`, `nama_pengirim`, `noHubungi`, `statusTransaksi`, `catatan`, `transaksiDibuat`, `transaksiEXP`, `status`, `created_at`, `updated_at`) VALUES
-(1, 2, NULL, 'STO-X4ON4X440V', 212000, 2, 2, 'Perum Bumi Asri J-15 Tahap 2', 'Bagus Andika', '(081) 232-3723', 'WAITING_PAYMENT', NULL, '2019-10-17 15:20:10', '2019-10-18 15:20:10', 'ENABLE', '2019-10-17 15:20:10', '0000-00-00 00:00:00');
+(1, 2, NULL, 'STO-X4ON4X440V', 212000, 2, 2, 'Perum Bumi Asri J-15 Tahap 2', 'Bagus Andika', '(081) 232-3723', 'WAITING_PAYMENT', 'asd', '2019-10-17 15:20:10', '2019-10-21 15:20:10', 'ENABLE', '2019-10-17 15:20:10', '2019-10-19 14:31:06');
 
 -- --------------------------------------------------------
 
@@ -928,8 +929,8 @@ CREATE TABLE `transaksi_produk` (
 --
 
 INSERT INTO `transaksi_produk` (`id`, `kodeKeranjang`, `idUser`, `idAdmin`, `idProduk`, `jumlahProduk`, `hargaProduk`, `totalHarga`, `statusTransaksi`, `status`, `created_at`, `updated_at`) VALUES
-(4, 'STO-X4ON4X440V', 2, NULL, 5, 1, 167000, 167000, 'WAITING_PAYMENT', 'ENABLE', '2019-10-17 12:07:12', '2019-10-17 15:20:10'),
-(7, 'STO-X4ON4X440V', 2, NULL, 6, 1, 45000, 45000, 'WAITING_PAYMENT', 'ENABLE', '2019-10-17 13:46:45', '2019-10-17 15:20:10');
+(4, 'STO-X4ON4X440V', 2, NULL, 5, 1, 167000, 167000, 'WAITING_PAYMENT', 'ENABLE', '2019-10-17 12:07:12', '2019-10-19 12:51:45'),
+(7, 'STO-X4ON4X440V', 2, NULL, 6, 1, 45000, 45000, 'WAITING_PAYMENT', 'ENABLE', '2019-10-17 13:46:45', '2019-10-19 12:51:45');
 
 -- --------------------------------------------------------
 
@@ -1078,7 +1079,7 @@ ALTER TABLE `access_control`
 -- AUTO_INCREMENT for table `file`
 --
 ALTER TABLE `file`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `keys`
@@ -1150,7 +1151,7 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `transaksi_produk`
 --
 ALTER TABLE `transaksi_produk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user`
