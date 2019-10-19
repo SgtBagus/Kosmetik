@@ -58,7 +58,7 @@ if ($this->session->userdata('session_sop') == "") {
                                                         <i class="fa fa-minus"></i>
                                                     </button>
                                                 </div>
-                                                <input type="text" class="form-control" value="<?= $row['jumlahProduk'] ?>" id="value-<?= $row['id'] ?>" name="dtd[<?= $i ?>][jumlahProduk]">
+                                                <input type="text" class="form-control" value="<?= $row['jumlahProduk'] ?>" id="value-<?= $row['id'] ?>" name="dtd[<?= $i ?>][jumlahProduk]" readonly>
                                                 <div class="input-group-btn">
                                                     <button id="addValue-<?= $row['id'] ?>" type="button" class="btn btn-primary" onclick="addValue(<?= $row['id'] ?>)" <?php if ($row['jumlahProduk'] >= $rowStock[0]['rowstock']) {
                                                         echo "disabled";
